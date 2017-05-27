@@ -1,32 +1,3 @@
-<?php
-
-// Init file poloniex.php.
-require_once('poloniex_api.php');
-require_once('apikey.php');
-
-// Nouvelle instance de la classe poloniex.
-$polo = new Poloniex_API($api_key, $secret_key);
-$totalVolume = '';
-$orderVolume = 0;
-// Call get balances.
-$pBalances = $polo->get_balances();
-$cBalances = $polo->get_complete_balances();
-$tVolume = $polo->get_ticker();
-$tDollars = 0;
-$tBtc = 0;
-$url="https://api.coinmarketcap.com/v1/ticker/";
-$json = file_get_contents($url);
-$data = json_decode($json, TRUE);
-$totalUsd = 0;	
-foreach($data as $key=>$value) 
-{
-	if($data[$key]['symbol'] == 'USDT')
-			{
-				$usd = $data[$key]['price_usd'];
-				break;
-			}
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
   
@@ -38,12 +9,12 @@ foreach($data as $key=>$value)
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="https://v4-alpha.getbootstrap.com/favicon.ico">
-	<meta http-equiv="refresh" content="10" />
+	<!--<meta http-equiv="refresh" content="10" />-->
 
     <title>CryptoTraders XXII</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="dist/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="dashboard.css" rel="stylesheet">
@@ -125,79 +96,23 @@ foreach($data as $key=>$value)
           </section>
 
           <h3><b>Mon compte</b></h3>
-				<div id="totalCompte" style='color:green; font-size: 1.5em'></div>
+            <div id="totalCompte" style='color:green; font-size: 1.5em'></div>
           <div class="table-responsive">
             <table class="table table-sortable">
               <thead>
                 <tr>
-                  <th>Crypto</th>
-                  <th>Mon volume</th>
-				  <th>Mon volume dispo</th>
-				  <th>Volume total</th>
-                  <th>BTC / USDT / USD</th>
-                  <th>Dernier achat</th>
-				  <th>Bénéfice</th>
+                    <th>Crypto</th>
+                    <th>Mon volume</th>
+                    <th>Mon volume dispo</th>
+                    <th>Volume total</th>
+                    <th>BTC / USDT / USD</th>
+                    <th>Dernier achat</th>
+                    <th>Bénéfice</th>
                 </tr>
+                
               </thead>
-              <tbody>
-               <?php 
-				$prixBtc = $tVolume['USDT_BTC']['last'];
-				// Cycle through the array
-				foreach ($pBalances as $cle => $monVolume) 
-				{															
-					$orderVolume = $cBalances[$cle]['onOrders'];
-					$volumeTotal = $orderVolume + $monVolume;	
-					echo "<tr>";					
-					if($volumeTotal != 0.00000000 &&  $cle != 'USDT') 
-					{
-						$volumeDispo = $cBalances[$cle]['available'] + 0;
-						$btcValue = $cBalances[$cle]['btcValue'];
-						$usdtValue = $btcValue * $prixBtc;
-						$tDollars = $tDollars + $usdtValue;
-						$tBtc = $tBtc + $btcValue;
-						$prixUsd = number_format($usdtValue*$usd, 2, '.', '');
-						$totalUsd = $totalUsd + $prixUsd;
-						if($cle != 'BTC')
-						{
-							$totalVolume = $tVolume['BTC_'.$cle]['baseVolume'];					
-						}
-						else
-						{
-							$totalVolume = $tVolume['USDT_BTC']['baseVolume'];
-						}
-						$usdtFormatValue = number_format($usdtValue, 2, '.', '');
-						
-						echo "<td>$cle</td>";
-						echo "<td>$volumeTotal</td>";
-						echo "<td>$volumeDispo</td>";
-						echo "<td>$totalVolume</td>";
-						echo "<td>$btcValue BTC / <b>$usdtFormatValue USDT / $prixUsd $</b></td>";
-										
-					}
-					if($cle == 'USDT' && $cBalances[$cle]['available'] >= 0.01)
-					{
-						$volumeDispo = $cBalances[$cle]['available'] + 0;
-						$btcValue = number_format($volumeTotal/$prixBtc,8);
-						$tDollars = $tDollars + $volumeTotal;
-						$tBtc = $tBtc + $btcValue;
-						$prixUsd = number_format($volumeTotal*$usd, 2, '.', '');
-						$totalUsd = $totalUsd + $prixUsd;
-						echo "<td>$cle</td>";
-						echo "<td>$volumeTotal</td>";
-						echo "<td>$volumeDispo</td>";
-						echo "<td>$volumeTotal</td>";
-						$volumeTotal = number_format($volumeTotal, 2, '.', '');
-						echo "<td>$btcValue BTC / <b>$volumeTotal USDT / $prixUsd $</b></td>";
-					}
-					echo "</tr>";	
-				}
-				$tFormatDollars = number_format($tDollars, 2, '.', '');
-				$tFormatUSD = number_format($totalUsd, 2, '.', '');
-				?>
-					<script type="text/javascript">
-	document.getElementById("totalCompte").innerHTML = "<p><b><?php echo $tBtc;?> BTC / <?php echo $tFormatDollars;?> USDT / <?php echo $tFormatUSD;?> $</b><p>";
-	</script>
-	
+              <tbody id="tableau">
+                  
               </tbody>
             </table>
           </div>
@@ -207,12 +122,46 @@ foreach($data as $key=>$value)
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.html"><\/script>')</script>
+        <script src="dist/js/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="dist/js/bootstrap.min.js"></script>
+
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    
+    <script type="text/javascript">
+            $(document).ready(function() {
+                
+                    $.ajax({
+                url: "traitement.php",
+                dataType : "json",
+                success: function(data){
+                  $("#tableau").html(data[0]) ;
+                  $("#totalCompte").html(data[1]);
+                },
+                error:function(erreur){
+                    alert(erreur);
+                }
+            });     
+            });
+            
+             setInterval(function(){
+                    $.ajax({
+                url: "traitement.php",
+                dataType : "json",
+                success: function(data){
+                  $("#tableau").html(data[0]) ;
+                  $("#totalCompte").html(data[1]);
+                },
+                error:function(erreur){
+                    alert(erreur);
+                }
+            });
+                },5000)    
+            
+        
+	</script>
+	
   </body>
 
 <!-- Mirrored from v4-alpha.getbootstrap.com/examples/dashboard/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 22 May 2017 15:31:05 GMT -->
