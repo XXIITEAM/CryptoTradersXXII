@@ -23,40 +23,51 @@
               </tbody>
             </table>
           </div>
-
+<?php
+if(isset($_GET['monnaie']) && !empty($_GET['monnaie'])) {
+$cle = $_GET['monnaie'];
+}
+else
+{
+    $cle = 'AMP';
+}
+?>
   
     <script type="text/javascript">
             $(document).ready(function() {
                 $(".nav li a").removeClass("active"); 
                 $('#lien_order').addClass('active');
-                    $.ajax({
-                url: "ajax/t_order.php",
-                dataType : "json",
-                success: function(data){   
-                $("#tableau_ordres").html(data[0]) ;
-                $('#tableHome').DataTable({
+                    $.post('ajax/t_order.php',{
+                        cleOrder: '<?php echo $cle;?>',
+        },
+                
+        function(data){ 
+                 $("#tableau_ordres").html(data);
+                    $('#tableHome').DataTable({
                     "paging": false,
                     "searching": false,
                     "info": false 
                 }); 
-                },
-                error:function(erreur){
-                }
+
+                
+               
+                
+              
             });     
             });
             
-             setInterval(function(){
-                    $.ajax({
-                url: "ajax/t_order.php",
-                dataType : "json",
-                success: function(data){
-                  $("#tableau_ordres").html(data[0]) ;
-                },
-                error:function(erreur){
-                    //alert(erreur);
-                }
-            });
-                },10000);    
-            
-        
+//             setInterval(function(){
+//                    $.ajax({
+//                url: "ajax/t_order.php",
+//                dataType : "json",
+//                success: function(data){
+//                  $("#tableau_ordres").html(data[0]) ;
+//                },
+//                error:function(erreur){
+//                    //alert(erreur);
+//                }
+//            });
+//                },10000);    
+//            
+//        
 	</script>

@@ -11,14 +11,20 @@ $polo = new Poloniex_API($api_key, $secret_key);
 $tHistory = $polo->get_trad('ALL');
 //print_r($tHistory);
 // Cycle through the array
-$html = array();
-$html[0] = "";
-$cle = "XRP";
+$html2= "";
+//$cle ='AMP';
+ //$cle = 'XRP';
+
+if(isset($_POST['cleOrder'])){
+$cle = $_POST['cleOrder'];
+}
+else {
+    $cle = 'XRP';
+}
 foreach($tHistory as $keyHisto=>$valueHisto) 
         {
-            if($keyHisto == 'BTC_'.$cle || $keyHisto == 'USDT_'.$cle)
-            {
-                $i=0;
+                 if($keyHisto == 'BTC_'.$cle || $keyHisto == 'USDT_'.$cle)
+                 {
                 foreach($valueHisto as $keyHisto2 => $valueHisto2) 
                 {
                     $globalTradeIDOrdre = $valueHisto2['globalTradeID'];
@@ -32,24 +38,22 @@ foreach($tHistory as $keyHisto=>$valueHisto)
                     $typeOrdre = $valueHisto2['type'];
                     $categorieOrdre = $valueHisto2['category'];
                     
-                    $html[0] .= "<tr>";        
-                    $html[0] .= "<td>$keyHisto</td>";
-                    $html[0] .= "<td>$globalTradeIDOrdre</td>";
-                    $html[0] .= "<td>$tradeIDOrdre</td>";
-                    $html[0] .= "<td>$dateOrdre</td>";
-                    $html[0] .= "<td>$rateOrdre</td>";
-                    $html[0] .= "<td>$montantOrdre</td>";
-                    $html[0] .= "<td>$totalOrdre</td>";
-                    $html[0] .= "<td>$fraisOrdre</td>";
-                    $html[0] .= "<td>$numOrdre</td>";
-                    $html[0] .= "<td>$typeOrdre</td>";
-                    $html[0] .= "<td>$categorieOrdre</td>";
-                    $html[0] .= "</tr>";
-                    $i = $i++;
+                    $html2 .= "<tr>";        
+                    $html2.= "<td>$keyHisto</td>";
+                    $html2 .= "<td>$globalTradeIDOrdre</td>";
+                    $html2 .= "<td>$tradeIDOrdre</td>";
+                    $html2 .= "<td>$dateOrdre</td>";
+                    $html2 .= "<td>$rateOrdre</td>";
+                    $html2 .= "<td>$montantOrdre</td>";
+                    $html2 .= "<td>$totalOrdre</td>";
+                    $html2 .= "<td>$fraisOrdre</td>";
+                    $html2 .= "<td>$numOrdre</td>";
+                    $html2 .= "<td>$typeOrdre</td>";
+                    $html2 .= "<td>$categorieOrdre</td>";
+                    $html2 .= "</tr>";
                 }
-            }
-                                  	
+                break;
+                 }                                 	
 }
-
-echo json_encode($html);
+echo $html2;
 exit();
