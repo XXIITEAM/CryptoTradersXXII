@@ -175,7 +175,7 @@ foreach($data as $key=>$value)
 						echo "<td>$btcValue BTC / <b>$usdtFormatValue USDT / $prixUsd USD</b></td>";
 										
 					}
-					if($cle == 'USDT')
+					if($cle == 'USDT' && $cBalances[$cle]['available'] >= 0.01)
 					{
 						$volumeDispo = $cBalances[$cle]['available'] + 0;
 						$btcValue = number_format($volumeTotal/$prixBtc,8);
