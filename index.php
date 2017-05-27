@@ -10,6 +10,9 @@ if(isset($_GET['page'])){
       case 'order':
           include('include/order.php');
           break;
+      case 'polo':
+          include('include/polo.php');
+          break;
       default:
           include('include/home.php');
           
