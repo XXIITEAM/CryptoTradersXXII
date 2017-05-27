@@ -55,7 +55,7 @@
                 }); 
                 },
                 error:function(){
-                    $("#tableau").html('<tr><td style="color:red; font-family: Comics; font-size: 1.5em" colspan="7"><b>Une erreur est survenue lors du chargement des données</b></td></tr>');
+                    $("#tableau").html('<tr><td style="color:red; font-family: Comics; font-size: 1.5em" colspan="8"><b>Une erreur est survenue lors du chargement des données</b></td></tr>');
                 }
             });     
             });
@@ -69,7 +69,7 @@
                   $("#totalCompte").html(data[1]);
                 },
                 error:function(){
-                    $("#tableau").html('<tr><td style="color:red; font-family: Comics; font-size: 1.5em" colspan="7"><b>Une erreur est survenue lors du chargement des données</b></td></tr>');
+                    $("#tableau").html('<tr><td style="color:red; font-family: Comics; font-size: 1.5em" colspan="8"><b>Une erreur est survenue lors du chargement des données</b></td></tr>');
                 }
             });
                 },10000); 
