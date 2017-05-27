@@ -12,15 +12,11 @@ $orderVolume = 0;
 $pBalances = $polo->get_balances();
 $cBalances = $polo->get_complete_balances();
 $tVolume = $polo->get_ticker();
-
 $tDollars = 0;
 $tBtc = 0;
-//$tHistory2 = $polo -> get_my_trade_history('BTC_XRP');
-
 $url="https://api.coinmarketcap.com/v1/ticker/";
 $json = file_get_contents($url);
 $data = json_decode($json, TRUE);
-$prixUsd = $data['22']['price_usd'];
 $totalUsd = 0;	
 foreach($data as $key=>$value) 
 {
@@ -29,9 +25,7 @@ foreach($data as $key=>$value)
 				$usd = $data[$key]['price_usd'];
 				break;
 			}
-}	
-// Print array of poloniex balances.
-//print_r($totalBtc);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -167,6 +161,10 @@ foreach($data as $key=>$value)
 						if($cle != 'BTC')
 						{
 							$totalVolume = $tVolume['BTC_'.$cle]['baseVolume'];					
+						}
+						else
+						{
+							$totalVolume = 0;
 						}
 						$usdtFormatValue = number_format($usdtValue, 2, '.', '');
 						
