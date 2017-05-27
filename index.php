@@ -38,7 +38,7 @@ foreach($data as $key=>$value)
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="https://v4-alpha.getbootstrap.com/favicon.ico">
-	<!--<meta http-equiv="refresh" content="10" />-->
+	<meta http-equiv="refresh" content="10" />
 
     <title>CryptoTraders</title>
 
@@ -50,7 +50,7 @@ foreach($data as $key=>$value)
   </head>
 
   <body>
-    <!--<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
       <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -76,8 +76,7 @@ foreach($data as $key=>$value)
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
-    </nav>-->
-<!--
+    </nav>
     <div class="container-fluid">
       <div class="row">
         <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
@@ -99,7 +98,6 @@ foreach($data as $key=>$value)
             </li>
           </ul>
         </nav>
--->
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
           <h1>Tableau de bords</h1>
 
@@ -126,7 +124,7 @@ foreach($data as $key=>$value)
             </div>
           </section>
 
-          <h2>Section title</h2>
+          <h2>Mon compte</h2>
           <div class="table-responsive">
             <table class="table table-sortable">
               <thead>
@@ -135,7 +133,7 @@ foreach($data as $key=>$value)
                   <th>Mon volume</th>
 				  <th>Mon volume dispo</th>
 				  <th>Volume total</th>
-                  <th>BTC/USDT/USD</th>
+                  <th>BTC / USDT / USD</th>
                   <th>Dernier achat</th>
 				  <th>Bénéfice</th>
                 </tr>
