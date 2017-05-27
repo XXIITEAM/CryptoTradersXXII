@@ -151,6 +151,9 @@ public function get_trad( $currencyPair )
             $req = array(
             'command' => 'returnTradeHistory'
         );
+            $date = new DateTime();
+            $req['start'] = $date->getTimestamp()-18000000;
+            $req['end'] = $date->getTimestamp();
         $req['currencyPair'] = strtoupper( $currencyPair );
 
         return $this->query( $req );

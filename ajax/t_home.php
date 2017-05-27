@@ -13,15 +13,16 @@ $orderVolume = 0;
 $pBalances = $polo->get_balances();
 $cBalances = $polo->get_complete_balances();
 $tVolume = $polo->get_ticker();
-$tHitory = $polo->get_trad('BTC_XRP');
-print_r($tHitory);
 $tDollars = 0;
 $tBtc = 0;
 $url="https://api.coinmarketcap.com/v1/ticker/";
 $json = file_get_contents($url);
 $data = json_decode($json, TRUE);
 $totalUsd = 0;
-
+$lastBuy = 0;
+//$tHitory = $polo->get_trad('ALL');
+//print_r($tHitory);
+$tHistory = $polo->get_trad('ALL');
 foreach($data as $key=>$value) 
 {
 	if($data[$key]['symbol'] == 'USDT')
@@ -61,13 +62,46 @@ foreach ($pBalances as $cle => $monVolume)
                 }
                 $usdtFormatValue = number_format($usdtValue, 2, '.', '');
                 
+                if(count($tHistory))
+                {
+                    foreach($tHistory as $keyHisto=>$valueHisto) 
+                        {
+                            if($keyHisto == 'BTC_'.$cle || $keyHisto == 'USDT_'.$cle)
+                            {
+                                foreach($tHistory[$keyHisto] as $keyHisto2=>$valueHisto2) 
+                                {
+                                    if($tHistory[$keyHisto][$keyHisto2]['type'] == 'buy')
+                                    {
+
+                                       
+                                       if($keyHisto == 'BTC_'.$cle)
+                                       {
+                                           $lastBuy =$tHistory[$keyHisto][$keyHisto2]['rate'];
+                                           $lastBuy .= " BTC";
+                                       }
+                                       else
+                                       {
+                                           $lastBuy =number_format($tHistory[$keyHisto][$keyHisto2]['rate'], 2, '.', '');;
+                                           $lastBuy .= " USDT";   
+                                       }
+                                    }
+                                    break;
+                                }
+
+                            }
+                        }
+                }
+                else
+                {
+                    $lastBuy = 0;
+                }
                 $html[0] .= "<td>$cle</td>";
                 $html[0] .= "<td>$volumeTotal</td>";
                 $html[0] .= "<td>$volumeDispo</td>";
                 $html[0] .= "<td>$totalVolume</td>";
                 $html[0] .= "<td>$btcValue BTC / <b>$usdtFormatValue USDT / $prixUsd $</b></td>";
                 $html[0] .= "<td>$lastPrice</td>";
-                $html[0] .= "<td></td>";
+                $html[0] .= "<td>$lastBuy</td>";
                 $html[0] .= "<td></td>";
                 $html[0] .= "</tr>";
 
