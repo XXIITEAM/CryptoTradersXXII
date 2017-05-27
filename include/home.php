@@ -1,4 +1,3 @@
-           <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
           <h3 style="color:#02a2d8"><b>Tableaux de bord</b></h3>
 
           <section class="row text-center placeholders">
