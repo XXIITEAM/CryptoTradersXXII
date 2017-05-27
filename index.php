@@ -17,7 +17,19 @@ $tDollars = 0;
 $tBtc = 0;
 //$tHistory2 = $polo -> get_my_trade_history('BTC_XRP');
 //print_r($cBalances);
-				
+$url="https://api.coinmarketcap.com/v1/ticker/";
+$json = file_get_contents($url);
+$data = json_decode($json, TRUE);
+$prixUsd = $data['22']['price_usd'];
+$totalUsd = 0;	
+foreach($data as $key=>$value) 
+{
+	if($data[$key]['symbol'] == 'USDT')
+			{
+				$usd = $data[$key]['price_usd'];
+				break;
+			}
+}	
 // Print array of poloniex balances.
 //print_r($totalBtc);
 ?>
@@ -32,7 +44,7 @@ $tBtc = 0;
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="https://v4-alpha.getbootstrap.com/favicon.ico">
-	<meta http-equiv="refresh" content="10" />
+	<!--<meta http-equiv="refresh" content="10" />-->
 
     <title>CryptoTraders</title>
 
@@ -129,7 +141,7 @@ $tBtc = 0;
                   <th>Mon volume</th>
 				  <th>Mon volume dispo</th>
 				  <th>Volume total</th>
-                  <th>BTC/USDT</th>
+                  <th>BTC/USDT/USD</th>
                   <th>Dernier achat</th>
 				  <th>Bénéfice</th>
                 </tr>
@@ -150,6 +162,8 @@ $tBtc = 0;
 						$usdtValue = $btcValue * $prixBtc;
 						$tDollars = $tDollars + $usdtValue;
 						$tBtc = $tBtc + $btcValue;
+						$prixUsd = number_format($usdtValue*$usd, 2, '.', '');
+						$totalUsd = $totalUsd + $prixUsd;
 						if($cle != 'BTC')
 						{
 							$totalVolume = $tVolume['BTC_'.$cle]['baseVolume'];					
@@ -160,27 +174,30 @@ $tBtc = 0;
 						echo "<td>$volumeTotal</td>";
 						echo "<td>$volumeDispo</td>";
 						echo "<td>$totalVolume</td>";
-						echo "<td>$btcValue BTC / <b>$usdtFormatValue $</b></td>";
+						echo "<td>$btcValue BTC / <b>$usdtFormatValue USDT / $prixUsd USD</b></td>";
 										
 					}
 					if($cle == 'USDT')
 					{
 						$volumeDispo = $cBalances[$cle]['available'] + 0;
-						$btcValue = number_format($volumeTotal/$prixBtc,8);
+						$btcValue = $volumeTotal/$prixBtc;
 						$tDollars = $tDollars + $volumeTotal;
 						$tBtc = $tBtc + $btcValue;
-						$usdtFormatValue = number_format($volumeTotal, 2, '.', '');
+						$prixUsd = number_format($volumeTotal*$usd, 2, '.', '');
+						$totalUsd = $totalUsd + $prixUsd;
 						echo "<td>$cle</td>";
 						echo "<td>$volumeTotal</td>";
 						echo "<td>$volumeDispo</td>";
 						echo "<td>$volumeTotal</td>";
-						echo "<td>$btcValue BTC / <b>$usdtFormatValue $</b></td>";
+						$volumeTotal = number_format($volumeTotal, 2, '.', '');
+						echo "<td>$btcValue BTC / <b>$volumeTotal USDT / $prixUsd USD</b></td>";
 					}
 					echo "</tr>";	
 				}
 				$tFormatDollars = number_format($tDollars, 2, '.', '');
+				$tFormatUSD = number_format($totalUsd, 2, '.', '');
 				echo "<tr>";
-				echo "<td colspan=5 style='text-align:center; color:green; font-size: 2em'><b>$tBtc BTC / $tFormatDollars UDST</b></td>";
+				echo "<td colspan=5 style='text-align:center; color:green; font-size: 2em'><b>$tBtc BTC / $tFormatDollars USDT / $totalUsd USD</b></td>";
 				?>
               </tbody>
             </table>
