@@ -96,7 +96,7 @@
           </section>
 
           <h3><b>Mon compte</b></h3>
-            <div id="totalCompte" style='color:green; font-size: 1.5em'></div>
+            <div id="totalCompte" style='font-family: Comics; color:green; font-size: 1.5em'></div>
           <div class="table-responsive">
             <table class="table table-sortable">
               <thead>

@@ -85,6 +85,6 @@ foreach ($pBalances as $cle => $monVolume)
 
 $tFormatDollars = number_format($tDollars, 2, '.', '');
 $tFormatUSD = number_format($totalUsd, 2, '.', '');
-$html[1] ="$tBtc BTC // $tFormatDollars USDT // $tFormatUSD USD";
+$html[1] ="<b>[ $tBtc BTC || $tFormatDollars USDT || $tFormatUSD $ ]</b>";
 echo json_encode($html);
 exit();
