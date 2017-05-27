@@ -43,7 +43,7 @@ foreach ($pBalances as $cle => $monVolume)
         if($volumeTotal != 0.00000000 &&  $cle != 'USDT') 
         {
                 $html[0] .= "<tr>";
-                $volumeDispo = $cBalances[$cle]['available'] + 0;
+                $volumeDispo = number_format($cBalances[$cle]['available'] + 0, 8, '.', '');
                 $btcValue = $cBalances[$cle]['btcValue'];
                 $usdtValue = $btcValue * $prixBtc;
                 $tDollars = $tDollars + $usdtValue;
