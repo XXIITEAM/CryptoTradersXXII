@@ -73,11 +73,5 @@
               <a class="nav-link" id="lien_order" href="index.php?page=order">Ordres</a>
             </li>
           </ul>
-
-          <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-              <a class="nav-link" id="lien_polo" href="index.php?page=polo">Poloniex</a>
-            </li>
-          </ul>
         </nav>
                   <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
