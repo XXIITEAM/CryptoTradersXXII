@@ -164,7 +164,7 @@ foreach($data as $key=>$value)
 						}
 						else
 						{
-							$totalVolume = 0;
+							$totalVolume = $tVolume['USDT_BTC']['baseVolume'];
 						}
 						$usdtFormatValue = number_format($usdtValue, 2, '.', '');
 						
