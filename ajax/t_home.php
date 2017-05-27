@@ -102,7 +102,7 @@ foreach ($pBalances as $cle => $monVolume)
                     $gainFormat = '+ '.$gainFormat;
                 }
                 $cleId[$i] =  $cle;
-                $html[0] .= '<td><b><a href="http://localhost/CryptoTradersXXII/index.php?page=order&cle='. $cleId[$i].'">'. $cleId[$i].'</a></b></td>';
+                $html[0] .= '<td><b><a href="http://localhost/CryptoTradersXXII/index.php?page=order&monnaie='. $cleId[$i].'">'. $cleId[$i].'</a></b></td>';
                 $html[0] .= "<td>$volumeTotal</td>";
                 $html[0] .= "<td>$volumeDispo</td>";
                 $html[0] .= "<td>$totalVolume</td>";
