@@ -10,7 +10,7 @@
                     <th style="text-align:center">Volume total</th>
                     <th style="text-align:center">BTC / USDT / USD</th>
                     <th style="text-align:center">Dernier prix connu</th>
-                    <th style="text-align:center">Dernier achat</th>
+                    <th style="text-align:center">Dernier prix d'achat</th>
                     <th style="text-align:center">Bénéfice</th>
                 </tr>
                 

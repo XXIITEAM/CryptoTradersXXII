@@ -20,8 +20,6 @@ $json = file_get_contents($url);
 $data = json_decode($json, TRUE);
 $totalUsd = 0;
 $lastBuy = 0;
-//$tHitory = $polo->get_trad('ALL');
-//print_r($tHitory);
 $tHistory = $polo->get_trad('ALL');
 foreach($data as $key=>$value) 
 {
@@ -50,6 +48,7 @@ foreach ($pBalances as $cle => $monVolume)
                 $tBtc = $tBtc + $btcValue;
                 $prixUsd = number_format($usdtValue*$usd, 2, '.', '');
                 $totalUsd = $totalUsd + $prixUsd;
+                $lastBuy = 0;
                 if($cle != 'BTC')
                 {
                         $totalVolume = $tVolume['BTC_'.$cle]['baseVolume'];
@@ -62,8 +61,7 @@ foreach ($pBalances as $cle => $monVolume)
                 }
                 $usdtFormatValue = number_format($usdtValue, 2, '.', '');
                 
-                if(count($tHistory))
-                {
+              
                     foreach($tHistory as $keyHisto=>$valueHisto) 
                         {
                             if($keyHisto == 'BTC_'.$cle || $keyHisto == 'USDT_'.$cle)
@@ -71,9 +69,7 @@ foreach ($pBalances as $cle => $monVolume)
                                 foreach($tHistory[$keyHisto] as $keyHisto2=>$valueHisto2) 
                                 {
                                     if($tHistory[$keyHisto][$keyHisto2]['type'] == 'buy')
-                                    {
-
-                                       
+                                    {      
                                        if($keyHisto == 'BTC_'.$cle)
                                        {
                                            $lastBuy =$tHistory[$keyHisto][$keyHisto2]['rate'];
@@ -81,20 +77,22 @@ foreach ($pBalances as $cle => $monVolume)
                                        }
                                        else
                                        {
-                                           $lastBuy =number_format($tHistory[$keyHisto][$keyHisto2]['rate'], 2, '.', '');;
+                                           $lastBuy =number_format($tHistory[$keyHisto][$keyHisto2]['rate'], 2, '.', '');
                                            $lastBuy .= " USDT";   
                                        }
+                                       break;
                                     }
-                                    break;
+                                    
                                 }
 
                             }
+                            if($lastBuy > 0)
+                            {
+                                break;
+                            }
                         }
-                }
-                else
-                {
-                    $lastBuy = 0;
-                }
+               
+                
                 $html[0] .= "<td>$cle</td>";
                 $html[0] .= "<td>$volumeTotal</td>";
                 $html[0] .= "<td>$volumeDispo</td>";
@@ -108,6 +106,7 @@ foreach ($pBalances as $cle => $monVolume)
         }
         if($cle == 'USDT' && $cBalances[$cle]['available'] >= 0.01)
         {
+                $lastBuy = 0;
                 $html[0] .= "<tr>";	
                 $volumeDispo = $cBalances[$cle]['available'] + 0;
                 $btcValue = number_format($volumeTotal/$prixBtc,8);
@@ -122,7 +121,7 @@ foreach ($pBalances as $cle => $monVolume)
                 $volumeTotal = number_format($volumeTotal, 2, '.', '');
                 $html[0] .= "<td>$btcValue BTC / <b>$volumeTotal USDT / $prixUsd $</b></td>";
                 $html[0] .= "<td>$usd $</td>";
-                $html[0] .= "<td></td>";
+                $html[0] .= "<td>$lastBuy</td>";
                 $html[0] .= "<td></td>";
                 $html[0] .= "</tr>";
         }
