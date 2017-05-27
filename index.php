@@ -32,6 +32,7 @@ $tBtc = 0;
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="https://v4-alpha.getbootstrap.com/favicon.ico">
+	<meta http-equiv="refresh" content="10" />
 
     <title>CryptoTraders</title>
 
