@@ -1,4 +1,4 @@
-          <h3><b>Mon compte</b></h3>
+          <h3><b>Mes transactions</b></h3>
             <div id="totalCompte" style='font-family: Comics; color:green; font-size: 1.5em'></div>
           <div class="table-responsive">
            <table id="tableHome" class="table table-striped table-bordered" width="100%" cellspacing="0" style="text-align:center">
@@ -32,10 +32,8 @@
                     $.ajax({
                 url: "ajax/t_order.php",
                 dataType : "json",
-                success: function(data){
-                for (i = 0; i < data.lengt; i++) {    
-                $("#tableau_ordres").html(data[i]) ;
-            }
+                success: function(data){   
+                $("#tableau_ordres").html(data[0]) ;
                 $('#tableHome').DataTable({
                     "paging": false,
                     "searching": false,
@@ -43,7 +41,6 @@
                 }); 
                 },
                 error:function(erreur){
-                    //alert(erreur);
                 }
             });     
             });

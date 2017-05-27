@@ -9,9 +9,10 @@ require_once('../include/apikey.php');
 $polo = new Poloniex_API($api_key, $secret_key);
 // Call get balances.
 $tHistory = $polo->get_trad('ALL');
-print_r($tHistory);
+//print_r($tHistory);
 // Cycle through the array
 $html = array();
+$html[0] = "";
 $cle = "XRP";
 foreach($tHistory as $keyHisto=>$valueHisto) 
         {
@@ -31,22 +32,21 @@ foreach($tHistory as $keyHisto=>$valueHisto)
                     $typeOrdre = $valueHisto2['type'];
                     $categorieOrdre = $valueHisto2['category'];
                     
-                    $html[$i] .= "<tr>";        
-                    $html[$i] .= "<td>$keyHisto</td>";
-                    $html[$i] .= "<td>$globalTradeIDOrdre</td>";
-                    $html[$i] .= "<td>$tradeIDOrdre</td>";
-                    $html[$i] .= "<td>$dateOrdre</td>";
-                    $html[$i] .= "<td>$rateOrdre</td>";
-                    $html[$i] .= "<td>$montantOrdre</td>";
-                    $html[$i] .= "<td>$totalOrdre</td>";
-                    $html[$i] .= "<td>$fraisOrdre</td>";
-                    $html[$i] .= "<td>$numOrdre</td>";
-                    $html[$i] .= "<td>$typeOrdre</td>";
-                    $html[$i] .= "<td>$categorieOrdre</td>";
-                    $html[$i] .= "</tr>";
-                    $i++;
+                    $html[0] .= "<tr>";        
+                    $html[0] .= "<td>$keyHisto</td>";
+                    $html[0] .= "<td>$globalTradeIDOrdre</td>";
+                    $html[0] .= "<td>$tradeIDOrdre</td>";
+                    $html[0] .= "<td>$dateOrdre</td>";
+                    $html[0] .= "<td>$rateOrdre</td>";
+                    $html[0] .= "<td>$montantOrdre</td>";
+                    $html[0] .= "<td>$totalOrdre</td>";
+                    $html[0] .= "<td>$fraisOrdre</td>";
+                    $html[0] .= "<td>$numOrdre</td>";
+                    $html[0] .= "<td>$typeOrdre</td>";
+                    $html[0] .= "<td>$categorieOrdre</td>";
+                    $html[0] .= "</tr>";
+                    $i = $i++;
                 }
-print_r($html);
             }
                                   	
 }
