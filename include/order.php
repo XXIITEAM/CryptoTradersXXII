@@ -26,7 +26,7 @@
                 $(".nav li a").removeClass("active"); 
                 $('#lien_order').addClass('active');
                     $.ajax({
-                url: "traitement.php",
+                url: "ajax/t_order.php",
                 dataType : "json",
                 success: function(data){
                   $("#tableau").html(data[0]) ;
@@ -40,7 +40,7 @@
             
              setInterval(function(){
                     $.ajax({
-                url: "traitement.php",
+                url: "ajax/t_order.php",
                 dataType : "json",
                 success: function(data){
                   $("#tableau").html(data[0]) ;

@@ -2,8 +2,8 @@
 <?php
 
 // Init file poloniex.php.
-require_once('poloniex_api.php');
-require_once('apikey.php');
+require_once('../include/poloniex_api.php');
+require_once('../include/apikey.php');
 
 // Nouvelle instance de la classe poloniex.
 $polo = new Poloniex_API($api_key, $secret_key);

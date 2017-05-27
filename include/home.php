@@ -27,7 +27,7 @@
                 $('#lien_home').addClass('active');
 
                     $.ajax({
-                url: "traitement.php",
+                url: "ajax/t_home.php",
                 dataType : "json",
                 success: function(data){
                   $("#tableau").html(data[0]) ;
@@ -41,7 +41,7 @@
             
              setInterval(function(){
                     $.ajax({
-                url: "traitement.php",
+                url: "ajax/t_home.php",
                 dataType : "json",
                 success: function(data){
                   $("#tableau").html(data[0]) ;
