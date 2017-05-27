@@ -58,7 +58,7 @@ foreach ($pBalances as $cle => $monVolume)
                 }
                 else
                 {
-                        $totalVolume = $tVolume['USDT_BTC']['baseVolume'];
+                        $totalVolume = number_format($tVolume['USDT_BTC']['baseVolume'], 8, '.', '');
                         $lastPrice = number_format($prixBtc, 2, '.', '').' USDT';
                 }
                 $usdtFormatValue = number_format($usdtValue, 2, '.', '');
