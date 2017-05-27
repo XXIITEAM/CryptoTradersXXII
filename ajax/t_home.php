@@ -100,7 +100,7 @@ foreach ($pBalances as $cle => $monVolume)
                 {
                     $gainFormat = '+ '.$gainFormat;
                 }
-                $html[0] .= "<td><b>$cle</b></td>";
+                $html[0] .= '<td><b><a href="index.php?page=order&cle='.$cle.'">'.$cle.'</a></b></td>';
                 $html[0] .= "<td>$volumeTotal</td>";
                 $html[0] .= "<td>$volumeDispo</td>";
                 $html[0] .= "<td>$totalVolume</td>";
@@ -129,7 +129,7 @@ foreach ($pBalances as $cle => $monVolume)
                 $tBtc = $tBtc + $btcValue;
                 $prixUsd = number_format($volumeTotal*$usd, 2, '.', '');
                 $totalUsd = $totalUsd + $prixUsd;
-                $html[0] .= "<td><b>$cle</b></td>";
+                $html[0] .= '<td><b><a href="index.php?page=order&cle='.$cle.'">'.$cle.'</a></b></td>';
                 $html[0] .=  "<td>$volumeTotal</td>";
                 $html[0] .= "<td>$volumeDispo</td>";
                 $html[0] .=  "<td>$volumeTotal</td>";
