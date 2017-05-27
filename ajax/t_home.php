@@ -39,7 +39,7 @@ $i = 0;
 foreach ($pBalances as $cle => $monVolume) 
 {															
         $orderVolume = $cBalances[$cle]['onOrders'];
-        $volumeTotal = $orderVolume + $monVolume;	
+        $volumeTotal = number_format($orderVolume + $monVolume, 8, '.', '');	
         if($volumeTotal != 0.00000000 &&  $cle != 'USDT') 
         {
                 $html[0] .= "<tr>";
