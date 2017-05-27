@@ -1,11 +1,11 @@
 <?php
 
 // Init file poloniex.php.
-require_once('poloniexapi.php');
+require_once('poloniex_api.php');
 require_once('apikey.php');
 
 // Nouvelle instance de la classe poloniex.
-$polo = new poloniex($api_key, $secret_key);
+$polo = new Poloniex_API($api_key, $secret_key);
 $totalVolume = '';
 $orderVolume = 0;
 // Call get balances.
