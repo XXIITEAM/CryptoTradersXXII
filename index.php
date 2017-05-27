@@ -99,7 +99,7 @@ foreach($data as $key=>$value)
           </ul>
         </nav>
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-          <h1>Tableau de bords</h1>
+          <h3><b>Tableau de bords</b></h3>
 
           <section class="row text-center placeholders">
             <div class="col-6 col-sm-3 placeholder">
@@ -124,7 +124,8 @@ foreach($data as $key=>$value)
             </div>
           </section>
 
-          <h2>Mon compte</h2>
+          <h3><b>Mon compte</b></h3>
+				<div id="totalCompte" style='color:green; font-size: 1.5em'></div>
           <div class="table-responsive">
             <table class="table table-sortable">
               <thead>
@@ -170,7 +171,7 @@ foreach($data as $key=>$value)
 						echo "<td>$volumeTotal</td>";
 						echo "<td>$volumeDispo</td>";
 						echo "<td>$totalVolume</td>";
-						echo "<td>$btcValue BTC / <b>$usdtFormatValue USDT / $prixUsd USD</b></td>";
+						echo "<td>$btcValue BTC / <b>$usdtFormatValue USDT / $prixUsd $</b></td>";
 										
 					}
 					if($cle == 'USDT' && $cBalances[$cle]['available'] >= 0.01)
@@ -186,22 +187,23 @@ foreach($data as $key=>$value)
 						echo "<td>$volumeDispo</td>";
 						echo "<td>$volumeTotal</td>";
 						$volumeTotal = number_format($volumeTotal, 2, '.', '');
-						echo "<td>$btcValue BTC / <b>$volumeTotal USDT / $prixUsd USD</b></td>";
+						echo "<td>$btcValue BTC / <b>$volumeTotal USDT / $prixUsd $</b></td>";
 					}
 					echo "</tr>";	
 				}
 				$tFormatDollars = number_format($tDollars, 2, '.', '');
 				$tFormatUSD = number_format($totalUsd, 2, '.', '');
-				echo "<tr>";
-				echo "<td colspan=5 style='text-align:center; color:green; font-size: 2em'><b>$tBtc BTC / $tFormatDollars USDT / $tFormatUSD USD</b></td>";
 				?>
+					<script type="text/javascript">
+	document.getElementById("totalCompte").innerHTML = "<p><b><?php echo $tBtc;?> BTC / <?php echo $tFormatDollars;?> USDT / <?php echo $tFormatUSD;?> $</b><p>";
+	</script>
+	
               </tbody>
             </table>
           </div>
         </main>
       </div>
     </div>
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
