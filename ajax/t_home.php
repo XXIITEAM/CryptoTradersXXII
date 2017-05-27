@@ -35,6 +35,7 @@ $prixBtc = $tVolume['USDT_BTC']['last'];
 // Cycle through the array
 $html = array();
 $html[0] = "";
+$i = 0;
 foreach ($pBalances as $cle => $monVolume) 
 {															
         $orderVolume = $cBalances[$cle]['onOrders'];
@@ -100,7 +101,8 @@ foreach ($pBalances as $cle => $monVolume)
                 {
                     $gainFormat = '+ '.$gainFormat;
                 }
-                $html[0] .= '<td><b><a href="index.php?page=order&cle='.$cle.'">'.$cle.'</a></b></td>';
+                $cleId[$i] =  $cle;
+                $html[0] .= '<td><b><a href="index.php?page=order&cle='. $cleId[$i].'">'. $cleId[$i].'</a></b></td>';
                 $html[0] .= "<td>$volumeTotal</td>";
                 $html[0] .= "<td>$volumeDispo</td>";
                 $html[0] .= "<td>$totalVolume</td>";
@@ -129,7 +131,8 @@ foreach ($pBalances as $cle => $monVolume)
                 $tBtc = $tBtc + $btcValue;
                 $prixUsd = number_format($volumeTotal*$usd, 2, '.', '');
                 $totalUsd = $totalUsd + $prixUsd;
-                $html[0] .= '<td><b><a href="index.php?page=order&cle='.$cle.'">'.$cle.'</a></b></td>';
+                $cleId[$i] =  $cle;
+                $html[0] .= '<td><b><a href="index.php?page=order&cle='. $cleId[$i].'">'. $cleId[$i].'</a></b></td>';
                 $html[0] .=  "<td>$volumeTotal</td>";
                 $html[0] .= "<td>$volumeDispo</td>";
                 $html[0] .=  "<td>$volumeTotal</td>";
@@ -140,7 +143,7 @@ foreach ($pBalances as $cle => $monVolume)
                 $html[0] .= "<td style='color:green'><b>0 %</b></td>";
                 $html[0] .= "</tr>";
         }
-        	
+     $i ++;   	
 }
 
 $tFormatDollars = number_format($tDollars, 2, '.', '');
