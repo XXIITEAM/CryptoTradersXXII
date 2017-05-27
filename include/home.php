@@ -1,16 +1,17 @@
           <h3><b>Mon compte</b></h3>
             <div id="totalCompte" style='font-family: Comics; color:green; font-size: 1.5em'></div>
           <div class="table-responsive">
-            <table class="table table-sortable">
+            <table class="table table-sortable" style="text-align:center">
               <thead>
                 <tr>
-                    <th>Crypto</th>
-                    <th>Mon volume</th>
-                    <th>Mon volume dispo</th>
-                    <th>Volume total</th>
-                    <th>BTC / USDT / USD</th>
-                    <th>Dernier achat</th>
-                    <th>Bénéfice</th>
+                    <th style="text-align:center">Crypto</th>
+                    <th style="text-align:center">Mon volume</th>
+                    <th style="text-align:center">Mon volume dispo</th>
+                    <th style="text-align:center">Volume total</th>
+                    <th style="text-align:center">BTC / USDT / USD</th>
+                    <th style="text-align:center">Dernier prix connu</th>
+                    <th style="text-align:center">Dernier achat</th>
+                    <th style="text-align:center">Bénéfice</th>
                 </tr>
                 
               </thead>
@@ -34,7 +35,7 @@
                   $("#totalCompte").html(data[1]);
                 },
                 error:function(erreur){
-                    alert(erreur);
+                    //alert("Une erreur est survenue);
                 }
             });     
             });
@@ -48,7 +49,7 @@
                   $("#totalCompte").html(data[1]);
                 },
                 error:function(erreur){
-                    alert(erreur);
+                    //alert(erreur);
                 }
             });
                 },5000);    

@@ -146,7 +146,17 @@ class Poloniex_API
         // return $this->query( $req );
         return $this->retrieveJSON( $req );
     }
+public function get_trad( $currencyPair )
+    {
+            $req = array(
+            'command' => 'returnTradeHistory'
+        );
+        $req['currencyPair'] = strtoupper( $currencyPair );
 
+        return $this->query( $req );
+    
+      
+    }
 
     public function get_24_volume()
     {

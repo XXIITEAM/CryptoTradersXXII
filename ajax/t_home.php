@@ -13,6 +13,8 @@ $orderVolume = 0;
 $pBalances = $polo->get_balances();
 $cBalances = $polo->get_complete_balances();
 $tVolume = $polo->get_ticker();
+$tHitory = $polo->get_trad('BTC_XRP');
+print_r($tHitory);
 $tDollars = 0;
 $tBtc = 0;
 $url="https://api.coinmarketcap.com/v1/ticker/";
@@ -39,7 +41,7 @@ foreach ($pBalances as $cle => $monVolume)
         $volumeTotal = $orderVolume + $monVolume;	
         if($volumeTotal != 0.00000000 &&  $cle != 'USDT') 
         {
-                    $html[0] .= "<tr>";	
+                $html[0] .= "<tr>";
                 $volumeDispo = $cBalances[$cle]['available'] + 0;
                 $btcValue = $cBalances[$cle]['btcValue'];
                 $usdtValue = $btcValue * $prixBtc;
@@ -49,11 +51,13 @@ foreach ($pBalances as $cle => $monVolume)
                 $totalUsd = $totalUsd + $prixUsd;
                 if($cle != 'BTC')
                 {
-                        $totalVolume = $tVolume['BTC_'.$cle]['baseVolume'];					
+                        $totalVolume = $tVolume['BTC_'.$cle]['baseVolume'];
+                        $lastPrice = $tVolume['BTC_'.$cle]['last']." BTC";
                 }
                 else
                 {
                         $totalVolume = $tVolume['USDT_BTC']['baseVolume'];
+                        $lastPrice = number_format($prixBtc, 2, '.', '').' USDT';
                 }
                 $usdtFormatValue = number_format($usdtValue, 2, '.', '');
                 
@@ -62,6 +66,10 @@ foreach ($pBalances as $cle => $monVolume)
                 $html[0] .= "<td>$volumeDispo</td>";
                 $html[0] .= "<td>$totalVolume</td>";
                 $html[0] .= "<td>$btcValue BTC / <b>$usdtFormatValue USDT / $prixUsd $</b></td>";
+                $html[0] .= "<td>$lastPrice</td>";
+                $html[0] .= "<td></td>";
+                $html[0] .= "<td></td>";
+                $html[0] .= "</tr>";
 
         }
         if($cle == 'USDT' && $cBalances[$cle]['available'] >= 0.01)
@@ -79,8 +87,12 @@ foreach ($pBalances as $cle => $monVolume)
                 $html[0] .=  "<td>$volumeTotal</td>";
                 $volumeTotal = number_format($volumeTotal, 2, '.', '');
                 $html[0] .= "<td>$btcValue BTC / <b>$volumeTotal USDT / $prixUsd $</b></td>";
+                $html[0] .= "<td>$usd $</td>";
+                $html[0] .= "<td></td>";
+                $html[0] .= "<td></td>";
+                $html[0] .= "</tr>";
         }
-        $html[0] .= "</tr>";	
+        	
 }
 
 $tFormatDollars = number_format($tDollars, 2, '.', '');
