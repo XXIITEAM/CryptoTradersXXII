@@ -64,7 +64,7 @@
         <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link" id="lien_home" href="index.php?page=home">Tableau de bords<span class="sr-only">(current)</span></a>
+              <a class="nav-link" id="lien_home" href="index.php?page=home">Tableaux de bord<span class="sr-only">(current)</span></a>
             </li>
           </ul>
 
@@ -81,27 +81,18 @@
           </ul>
         </nav>
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-          <h3 style="color:#02a2d8"><b>Tableau de bord</b></h3>
+          <h3 style="color:#02a2d8"><b>Tableaux de bord</b></h3>
 
           <section class="row text-center placeholders">
-            <div class="col-6 col-sm-3 placeholder">
+            <div class="col-6 col-sm-3 placeholder" style="float:left; margin:0 auto">
               <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <div class="text-muted">Something else</div>
+              <h4>Répartition des monnaies</h4>
+              <span class="text-muted"></span>
             </div>
-            <div class="col-6 col-sm-3 placeholder">
+              <div class="col-6 col-sm-3 placeholder" style="float:left;; margin:0 auto">
               <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+              <h4>Cours du BTC</h4>
+              <span class="text-muted"></span>
             </div>
-            <div class="col-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
+            
           </section>
