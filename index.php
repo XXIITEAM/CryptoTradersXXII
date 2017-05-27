@@ -180,7 +180,7 @@ foreach($data as $key=>$value)
 					if($cle == 'USDT')
 					{
 						$volumeDispo = $cBalances[$cle]['available'] + 0;
-						$btcValue = $volumeTotal/$prixBtc;
+						$btcValue = number_format($volumeTotal/$prixBtc,8);
 						$tDollars = $tDollars + $volumeTotal;
 						$tBtc = $tBtc + $btcValue;
 						$prixUsd = number_format($volumeTotal*$usd, 2, '.', '');
