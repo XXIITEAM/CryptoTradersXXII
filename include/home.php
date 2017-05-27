@@ -8,10 +8,10 @@
                     <th style="text-align:center">Mon volume</th>
                     <th style="text-align:center">Mon volume dispo</th>
                     <th style="text-align:center">Volume total</th>
-                    <th style="text-align:center">BTC / USDT / USD</th>
                     <th style="text-align:center">Dernier prix connu</th>
                     <th style="text-align:center">Dernier prix d'achat</th>
-                    <th style="text-align:center">Bénéfice</th>
+                    <th style="text-align:center">BTC / USDT / USD</th>
+                    <th style="text-align:center">Bénéfices</th>
                 </tr>
                 
               </thead>

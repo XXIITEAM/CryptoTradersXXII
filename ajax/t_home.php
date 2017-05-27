@@ -97,9 +97,9 @@ foreach ($pBalances as $cle => $monVolume)
                 $html[0] .= "<td>$volumeTotal</td>";
                 $html[0] .= "<td>$volumeDispo</td>";
                 $html[0] .= "<td>$totalVolume</td>";
-                $html[0] .= "<td>$btcValue BTC / <b>$usdtFormatValue USDT / $prixUsd $</b></td>";
                 $html[0] .= "<td>$lastPrice</td>";
                 $html[0] .= "<td>$lastBuy</td>";
+                $html[0] .= "<td>$btcValue BTC / <b>$usdtFormatValue USDT / $prixUsd $</b></td>";
                 $html[0] .= "<td></td>";
                 $html[0] .= "</tr>";
 
@@ -119,9 +119,9 @@ foreach ($pBalances as $cle => $monVolume)
                 $html[0] .= "<td>$volumeDispo</td>";
                 $html[0] .=  "<td>$volumeTotal</td>";
                 $volumeTotal = number_format($volumeTotal, 2, '.', '');
-                $html[0] .= "<td>$btcValue BTC / <b>$volumeTotal USDT / $prixUsd $</b></td>";
                 $html[0] .= "<td>$usd $</td>";
                 $html[0] .= "<td>$lastBuy</td>";
+                $html[0] .= "<td>$btcValue BTC / <b>$volumeTotal USDT / $prixUsd $</b></td>";
                 $html[0] .= "<td></td>";
                 $html[0] .= "</tr>";
         }
