@@ -141,7 +141,8 @@ $tBtc = 0;
 				foreach ($pBalances as $cle => $monVolume) 
 				{															
 					$orderVolume = $cBalances[$cle]['onOrders'];
-					$volumeTotal = $orderVolume + $monVolume;					
+					$volumeTotal = $orderVolume + $monVolume;	
+					echo "<tr>";					
 					if($volumeTotal != 0.00000000 &&  $cle != 'USDT') 
 					{
 						$volumeDispo = $cBalances[$cle]['available'] + 0;
@@ -149,19 +150,33 @@ $tBtc = 0;
 						$usdtValue = $btcValue * $prixBtc;
 						$tDollars = $tDollars + $usdtValue;
 						$tBtc = $tBtc + $btcValue;
-						if($cle != 'BTC' )
+						if($cle != 'BTC')
 						{
 							$totalVolume = $tVolume['BTC_'.$cle]['baseVolume'];					
 						}
 						$usdtFormatValue = number_format($usdtValue, 2, '.', '');
-						echo "<tr>";
+						
 						echo "<td>$cle</td>";
 						echo "<td>$volumeTotal</td>";
 						echo "<td>$volumeDispo</td>";
 						echo "<td>$totalVolume</td>";
 						echo "<td>$btcValue BTC / <b>$usdtFormatValue $</b></td>";
-						echo "</tr>";					
+										
 					}
+					if($cle == 'USDT')
+					{
+						$volumeDispo = $cBalances[$cle]['available'] + 0;
+						$btcValue = number_format($volumeTotal/$prixBtc,8);
+						$tDollars = $tDollars + $volumeTotal;
+						$tBtc = $tBtc + $btcValue;
+						$usdtFormatValue = number_format($volumeTotal, 2, '.', '');
+						echo "<td>$cle</td>";
+						echo "<td>$volumeTotal</td>";
+						echo "<td>$volumeDispo</td>";
+						echo "<td>$volumeTotal</td>";
+						echo "<td>$btcValue BTC / <b>$usdtFormatValue $</b></td>";
+					}
+					echo "</tr>";	
 				}
 				$tFormatDollars = number_format($tDollars, 2, '.', '');
 				echo "<tr>";
