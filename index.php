@@ -40,7 +40,7 @@ foreach($data as $key=>$value)
     <link rel="icon" href="https://v4-alpha.getbootstrap.com/favicon.ico">
 	<meta http-equiv="refresh" content="10" />
 
-    <title>CryptoTraders</title>
+    <title>CryptoTraders XXII</title>
 
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
@@ -99,7 +99,7 @@ foreach($data as $key=>$value)
           </ul>
         </nav>
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-          <h3><b>Tableau de bords</b></h3>
+          <h3><b>Tableau de bord</b></h3>
 
           <section class="row text-center placeholders">
             <div class="col-6 col-sm-3 placeholder">
