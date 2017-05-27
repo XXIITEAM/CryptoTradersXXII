@@ -16,7 +16,7 @@ $tVolume = $polo->get_ticker();
 $tDollars = 0;
 $tBtc = 0;
 //$tHistory2 = $polo -> get_my_trade_history('BTC_XRP');
-//print_r($cBalances);
+
 $url="https://api.coinmarketcap.com/v1/ticker/";
 $json = file_get_contents($url);
 $data = json_decode($json, TRUE);
@@ -197,7 +197,7 @@ foreach($data as $key=>$value)
 				$tFormatDollars = number_format($tDollars, 2, '.', '');
 				$tFormatUSD = number_format($totalUsd, 2, '.', '');
 				echo "<tr>";
-				echo "<td colspan=5 style='text-align:center; color:green; font-size: 2em'><b>$tBtc BTC / $tFormatDollars USDT / $totalUsd USD</b></td>";
+				echo "<td colspan=5 style='text-align:center; color:green; font-size: 2em'><b>$tBtc BTC / $tFormatDollars USDT / $tFormatUSD USD</b></td>";
 				?>
               </tbody>
             </table>
