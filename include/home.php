@@ -1,17 +1,17 @@
-          <h3><b>Mon compte</b></h3>
+          <h3 style="color:#02a2d8"><b>Mon compte</b></h3>
             <div id="totalCompte" style='font-family: Comics; color:green; font-size: 1.5em'></div>
           <div class="table-responsive">
             <table id="tableHome" class="table table-striped table-bordered" width="100%" cellspacing="0" style="text-align:center">
               <thead>
-                <tr>
-                    <th style="text-align:center; cursor:pointer;">Crypto</th>
-                    <th style="text-align:center; cursor:pointer;">Mon volume</th>
-                    <th style="text-align:center; cursor:pointer;">Mon volume disponible</th>
-                    <th style="text-align:center; cursor:pointer;">Volume total</th>
-                    <th style="text-align:center; cursor:pointer;">Dernier prix connu</th>
-                    <th style="text-align:center; cursor:pointer;">Dernier prix d'achat</th>
-                    <th style="text-align:center; cursor:pointer;">BTC / USDT / USD</th>
-                    <th style="text-align:center; cursor:pointer;">Bénéfices ou pertes</th>
+                <tr style="background-color:#02a2d8">
+                    <th style="text-align:center; cursor:pointer; color:white;">Crypto</th>
+                    <th style="text-align:center; cursor:pointer; color:white;">Mon volume</th>
+                    <th style="text-align:center; cursor:pointer; color:white;">Mon volume disponible</th>
+                    <th style="text-align:center; cursor:pointer; color:white;">Volume total</th>
+                    <th style="text-align:center; cursor:pointer; color:white;">Dernier prix connu</th>
+                    <th style="text-align:center; cursor:pointer; color:white;">Dernier prix d'achat</th>
+                    <th style="text-align:center; cursor:pointer; color:white;">BTC / USDT / USD</th>
+                    <th style="text-align:center; cursor:pointer; color:white;">Bénéfices ou pertes</th>
                 </tr>
                 
               </thead>

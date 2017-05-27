@@ -81,7 +81,7 @@
           </ul>
         </nav>
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-          <h3><b>Tableau de bord</b></h3>
+          <h3 style="color:#02a2d8"><b>Tableau de bord</b></h3>
 
           <section class="row text-center placeholders">
             <div class="col-6 col-sm-3 placeholder">
