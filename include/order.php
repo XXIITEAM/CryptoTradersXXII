@@ -14,7 +14,7 @@
                 </tr>
                 
               </thead>
-              <tbody id="tableau">
+              <tbody id="tableau_ordres">
                   
               </tbody>
             </table>
@@ -29,11 +29,12 @@
                 url: "ajax/t_order.php",
                 dataType : "json",
                 success: function(data){
-                  $("#tableau").html(data[0]) ;
-                  $("#totalCompte").html(data[1]);
+                $("#tableau_ordres").html(data[0]) ;
+                alert(data[0]);
                 },
                 error:function(erreur){
-                    alert(erreur);
+                    //alert(erreur);
+                    alert(data[0]);
                 }
             });     
             });
@@ -43,14 +44,13 @@
                 url: "ajax/t_order.php",
                 dataType : "json",
                 success: function(data){
-                  $("#tableau").html(data[0]) ;
-                  $("#totalCompte").html(data[1]);
+                  $("#tableau_ordres").html(data[0]) ;
                 },
                 error:function(erreur){
-                    alert(erreur);
+                    //alert(erreur);
                 }
             });
-                },5000);    
+                },10000);    
             
         
 	</script>

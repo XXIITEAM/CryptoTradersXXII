@@ -7,84 +7,40 @@ require_once('../include/apikey.php');
 
 // Nouvelle instance de la classe poloniex.
 $polo = new Poloniex_API($api_key, $secret_key);
-$totalVolume = '';
-$orderVolume = 0;
 // Call get balances.
-$pBalances = $polo->get_balances();
-$cBalances = $polo->get_complete_balances();
-$tVolume = $polo->get_ticker();
-$tDollars = 0;
-$tBtc = 0;
-$url="https://api.coinmarketcap.com/v1/ticker/";
-$json = file_get_contents($url);
-$data = json_decode($json, TRUE);
-$totalUsd = 0;
-
-foreach($data as $key=>$value) 
-{
-	if($data[$key]['symbol'] == 'USDT')
-			{
-				$usd = $data[$key]['price_usd'];
-				break;
-			}
-}
-
-$prixBtc = $tVolume['USDT_BTC']['last'];
+$tHistory = $polo->get_trad('ALL');
+//print_r($tHistory);
 // Cycle through the array
 $html = array();
 $html[0] = "";
-foreach ($pBalances as $cle => $monVolume) 
-{															
-        $orderVolume = $cBalances[$cle]['onOrders'];
-        $volumeTotal = $orderVolume + $monVolume;	
-        if($volumeTotal != 0.00000000 &&  $cle != 'USDT') 
+$cle = "XRP";
+foreach($tHistory as $keyHisto=>$valueHisto) 
         {
-                    $html[0] .= "<tr>";	
-                $volumeDispo = $cBalances[$cle]['available'] + 0;
-                $btcValue = $cBalances[$cle]['btcValue'];
-                $usdtValue = $btcValue * $prixBtc;
-                $tDollars = $tDollars + $usdtValue;
-                $tBtc = $tBtc + $btcValue;
-                $prixUsd = number_format($usdtValue*$usd, 2, '.', '');
-                $totalUsd = $totalUsd + $prixUsd;
-                if($cle != 'BTC')
+            if($keyHisto == 'BTC_'.$cle || $keyHisto == 'USDT_'.$cle)
+            {
+                foreach($valueHisto as $keyHisto2 => $valueHisto2) 
                 {
-                        $totalVolume = $tVolume['BTC_'.$cle]['baseVolume'];					
+                    $globalTradeID = $valueHisto2['globalTradeID'];
+                    $tradeID = $valueHisto2['tradeID'];
+                    $date = $valueHisto2['date'];
+                    $rate = $valueHisto2['rate'];
+                    $amount = $valueHisto2['amount'];
+                    $total = $valueHisto2['total'];
+                    $frais = $valueHisto2['fee'];
+                    $html[0] .= "<tr>";        
+                    $html[0] .= "<td>$keyHisto</td>";
+                    $html[0] .= "<td>$globalTradeID</td>";
+                    $html[0] .= "<td>$date</td>";
+                    $html[0] .= "<td>$rate</td>";
+                    $html[0] .= "<td>$amount</td>";
+                    $html[0] .= "<td>$total</td>";
+                    $html[0] .= "<td>$frais</td>";
+                    $html[0] .= "</tr>";
                 }
-                else
-                {
-                        $totalVolume = $tVolume['USDT_BTC']['baseVolume'];
-                }
-                $usdtFormatValue = number_format($usdtValue, 2, '.', '');
-                
-                $html[0] .= "<td>$cle</td>";
-                $html[0] .= "<td>$volumeTotal</td>";
-                $html[0] .= "<td>$volumeDispo</td>";
-                $html[0] .= "<td>$totalVolume</td>";
-                $html[0] .= "<td>$btcValue BTC / <b>$usdtFormatValue USDT / $prixUsd $</b></td>";
 
-        }
-        if($cle == 'USDT' && $cBalances[$cle]['available'] >= 0.01)
-        {
-                $html[0] .= "<tr>";	
-                $volumeDispo = $cBalances[$cle]['available'] + 0;
-                $btcValue = number_format($volumeTotal/$prixBtc,8);
-                $tDollars = $tDollars + $volumeTotal;
-                $tBtc = $tBtc + $btcValue;
-                $prixUsd = number_format($volumeTotal*$usd, 2, '.', '');
-                $totalUsd = $totalUsd + $prixUsd;
-                $html[0] .= "<td>$cle</td>";
-                $html[0] .=  "<td>$volumeTotal</td>";
-                $html[0] .= "<td>$volumeDispo</td>";
-                $html[0] .=  "<td>$volumeTotal</td>";
-                $volumeTotal = number_format($volumeTotal, 2, '.', '');
-                $html[0] .= "<td>$btcValue BTC / <b>$volumeTotal USDT / $prixUsd $</b></td>";
-        }
-        $html[0] .= "</tr>";	
+            }
+                                  	
 }
 
-$tFormatDollars = number_format($tDollars, 2, '.', '');
-$tFormatUSD = number_format($totalUsd, 2, '.', '');
-$html[1] ="<b>[ $tBtc BTC || $tFormatDollars USDT || $tFormatUSD $ ]</b>";
 echo json_encode($html);
 exit();
