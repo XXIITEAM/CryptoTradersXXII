@@ -9,6 +9,7 @@ require_once('../include/apikey.php');
 $polo = new Poloniex_API($api_key, $secret_key);
 $totalVolume = '';
 $orderVolume = 0;
+$gain = 0;
 // Call get balances.
 $pBalances = $polo->get_balances();
 $cBalances = $polo->get_complete_balances();
@@ -74,11 +75,13 @@ foreach ($pBalances as $cle => $monVolume)
                                        {
                                            $lastBuy =$tHistory[$keyHisto][$keyHisto2]['rate'];
                                            $lastBuy .= " BTC";
+                                           $gain = ( ( $lastPrice - $lastBuy ) / $lastBuy ) * 100;
                                        }
                                        else
                                        {
                                            $lastBuy =number_format($tHistory[$keyHisto][$keyHisto2]['rate'], 2, '.', '');
-                                           $lastBuy .= " USDT";   
+                                           $lastBuy .= " USDT"; 
+                                           $gain = ( ( $lastPrice - $lastBuy ) / $lastBuy ) * 100;
                                        }
                                        break;
                                     }
@@ -92,15 +95,27 @@ foreach ($pBalances as $cle => $monVolume)
                             }
                         }
                
-                
-                $html[0] .= "<td>$cle</td>";
+                $gainFormat = number_format($gain, 2, '.', '');
+                if($gainFormat >= 0)
+                {
+                    $gainFormat = '+ '.$gainFormat;
+                }
+                $html[0] .= "<td><b>$cle</b></td>";
                 $html[0] .= "<td>$volumeTotal</td>";
                 $html[0] .= "<td>$volumeDispo</td>";
                 $html[0] .= "<td>$totalVolume</td>";
                 $html[0] .= "<td>$lastPrice</td>";
                 $html[0] .= "<td>$lastBuy</td>";
                 $html[0] .= "<td>$btcValue BTC / <b>$usdtFormatValue USDT / $prixUsd $</b></td>";
-                $html[0] .= "<td></td>";
+                if($gainFormat >= 0)
+                {
+                   $html[0] .= "<td style='color:green'><b>$gainFormat %</b></td>"; 
+                }
+                else
+                {
+                   $html[0] .= "<td style='color:red'><b>$gainFormat %</b></td>";  
+                }
+                
                 $html[0] .= "</tr>";
 
         }
@@ -109,12 +124,12 @@ foreach ($pBalances as $cle => $monVolume)
                 $lastBuy = 0;
                 $html[0] .= "<tr>";	
                 $volumeDispo = $cBalances[$cle]['available'] + 0;
-                $btcValue = number_format($volumeTotal/$prixBtc,8);
+                $btcValue = number_format($volumeTotal/$prixBtc, 8, '.', '');
                 $tDollars = $tDollars + $volumeTotal;
                 $tBtc = $tBtc + $btcValue;
                 $prixUsd = number_format($volumeTotal*$usd, 2, '.', '');
                 $totalUsd = $totalUsd + $prixUsd;
-                $html[0] .= "<td>$cle</td>";
+                $html[0] .= "<td><b>$cle</b></td>";
                 $html[0] .=  "<td>$volumeTotal</td>";
                 $html[0] .= "<td>$volumeDispo</td>";
                 $html[0] .=  "<td>$volumeTotal</td>";
@@ -122,7 +137,7 @@ foreach ($pBalances as $cle => $monVolume)
                 $html[0] .= "<td>$usd $</td>";
                 $html[0] .= "<td>$lastBuy</td>";
                 $html[0] .= "<td>$btcValue BTC / <b>$volumeTotal USDT / $prixUsd $</b></td>";
-                $html[0] .= "<td></td>";
+                $html[0] .= "<td style='color:green'><b>0 %</b></td>";
                 $html[0] .= "</tr>";
         }
         	

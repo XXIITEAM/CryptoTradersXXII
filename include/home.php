@@ -6,12 +6,12 @@
                 <tr>
                     <th style="text-align:center">Crypto</th>
                     <th style="text-align:center">Mon volume</th>
-                    <th style="text-align:center">Mon volume dispo</th>
+                    <th style="text-align:center">Mon volume disponible</th>
                     <th style="text-align:center">Volume total</th>
                     <th style="text-align:center">Dernier prix connu</th>
                     <th style="text-align:center">Dernier prix d'achat</th>
                     <th style="text-align:center">BTC / USDT / USD</th>
-                    <th style="text-align:center">Bénéfices</th>
+                    <th style="text-align:center">Bénéfices ou pertes</th>
                 </tr>
                 
               </thead>
@@ -34,8 +34,8 @@
                   $("#tableau").html(data[0]) ;
                   $("#totalCompte").html(data[1]);
                 },
-                error:function(erreur){
-                    //alert("Une erreur est survenue);
+                error:function(){
+                    alert("Une erreur est survenue lors du chargement des données");
                 }
             });     
             });
@@ -48,11 +48,11 @@
                   $("#tableau").html(data[0]) ;
                   $("#totalCompte").html(data[1]);
                 },
-                error:function(erreur){
-                    //alert(erreur);
+                error:function(){
+                  alert("Une erreur est survenue lors du chargement des données");
                 }
             });
-                },5000);    
+                },10000);    
             
         
 	</script>
