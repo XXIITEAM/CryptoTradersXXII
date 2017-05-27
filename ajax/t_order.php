@@ -9,35 +9,44 @@ require_once('../include/apikey.php');
 $polo = new Poloniex_API($api_key, $secret_key);
 // Call get balances.
 $tHistory = $polo->get_trad('ALL');
-//print_r($tHistory);
+print_r($tHistory);
 // Cycle through the array
 $html = array();
-$html[0] = "";
 $cle = "XRP";
 foreach($tHistory as $keyHisto=>$valueHisto) 
         {
             if($keyHisto == 'BTC_'.$cle || $keyHisto == 'USDT_'.$cle)
             {
+                $i=0;
                 foreach($valueHisto as $keyHisto2 => $valueHisto2) 
                 {
-                    $globalTradeID = $valueHisto2['globalTradeID'];
-                    $tradeID = $valueHisto2['tradeID'];
-                    $date = $valueHisto2['date'];
-                    $rate = $valueHisto2['rate'];
-                    $amount = $valueHisto2['amount'];
-                    $total = $valueHisto2['total'];
-                    $frais = $valueHisto2['fee'];
-                    $html[0] .= "<tr>";        
-                    $html[0] .= "<td>$keyHisto</td>";
-                    $html[0] .= "<td>$globalTradeID</td>";
-                    $html[0] .= "<td>$date</td>";
-                    $html[0] .= "<td>$rate</td>";
-                    $html[0] .= "<td>$amount</td>";
-                    $html[0] .= "<td>$total</td>";
-                    $html[0] .= "<td>$frais</td>";
-                    $html[0] .= "</tr>";
+                    $globalTradeIDOrdre = $valueHisto2['globalTradeID'];
+                    $tradeIDOrdre = $valueHisto2['tradeID'];
+                    $dateOrdre = $valueHisto2['date'];
+                    $rateOrdre = $valueHisto2['rate'];
+                    $montantOrdre = $valueHisto2['amount'];
+                    $totalOrdre = $valueHisto2['total'];
+                    $fraisOrdre = $valueHisto2['fee'];
+                    $numOrdre = $valueHisto2['orderNumber'];
+                    $typeOrdre = $valueHisto2['type'];
+                    $categorieOrdre = $valueHisto2['category'];
+                    
+                    $html[$i] .= "<tr>";        
+                    $html[$i] .= "<td>$keyHisto</td>";
+                    $html[$i] .= "<td>$globalTradeIDOrdre</td>";
+                    $html[$i] .= "<td>$tradeIDOrdre</td>";
+                    $html[$i] .= "<td>$dateOrdre</td>";
+                    $html[$i] .= "<td>$rateOrdre</td>";
+                    $html[$i] .= "<td>$montantOrdre</td>";
+                    $html[$i] .= "<td>$totalOrdre</td>";
+                    $html[$i] .= "<td>$fraisOrdre</td>";
+                    $html[$i] .= "<td>$numOrdre</td>";
+                    $html[$i] .= "<td>$typeOrdre</td>";
+                    $html[$i] .= "<td>$categorieOrdre</td>";
+                    $html[$i] .= "</tr>";
+                    $i++;
                 }
-
+print_r($html);
             }
                                   	
 }

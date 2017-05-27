@@ -1,16 +1,20 @@
           <h3><b>Mon compte</b></h3>
             <div id="totalCompte" style='font-family: Comics; color:green; font-size: 1.5em'></div>
           <div class="table-responsive">
-            <table class="table table-sortable">
+           <table id="tableHome" class="table table-striped table-bordered" width="100%" cellspacing="0" style="text-align:center">
               <thead>
                 <tr>
                     <th>Crypto</th>
-                    <th>Mon volume</th>
-                    <th>Mon volume dispo</th>
-                    <th>Volume total</th>
-                    <th>BTC / USDT / USD</th>
-                    <th>Dernier achat</th>
-                    <th>Bénéfice</th>
+                    <th>GlobalTradeID</th>
+                    <th>TradeID</th>
+                    <th>Date</th>
+                    <th>Rate</th>
+                    <th>Montant</th>
+                    <th>total</th>
+                    <th>Frais</th>
+                    <th>Numéro</th>
+                    <th>Type</th>
+                    <th>Catégorie</th>
                 </tr>
                 
               </thead>
@@ -29,12 +33,17 @@
                 url: "ajax/t_order.php",
                 dataType : "json",
                 success: function(data){
-                $("#tableau_ordres").html(data[0]) ;
-                alert(data[0]);
+                for (i = 0; i < data.lengt; i++) {    
+                $("#tableau_ordres").html(data[i]) ;
+            }
+                $('#tableHome').DataTable({
+                    "paging": false,
+                    "searching": false,
+                    "info": false 
+                }); 
                 },
                 error:function(erreur){
                     //alert(erreur);
-                    alert(data[0]);
                 }
             });     
             });
