@@ -2,8 +2,7 @@
 
 // Init file poloniex.php.
 require_once('poloniexapi.php');
-$api_key= "CCGT2EQJ-6Q00LPV8-MZK4C682-4MZRMXEO";
-$secret_key ="d95d220c35c1ccf76eeec292a7513239f11b2fc19a7d7c364ec155a2769770ca443fb0aa5662a56d5806a78950144035f6ed065b4deaae8e867f2b192883a6b0";
+require_once('apikey.php');
 
 // Nouvelle instance de la classe poloniex.
 $polo = new poloniex($api_key, $secret_key);
