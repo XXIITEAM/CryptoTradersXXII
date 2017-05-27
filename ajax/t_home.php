@@ -102,7 +102,7 @@ foreach ($pBalances as $cle => $monVolume)
                     $gainFormat = '+ '.$gainFormat;
                 }
                 $cleId[$i] =  $cle;
-                $html[0] .= '<td><b><a href="index.php?page=order&cle='. $cleId[$i].'">'. $cleId[$i].'</a></b></td>';
+                $html[0] .= '<td><b><a http://localhost/CryptoTradersXXII/index.php?page=order&cle='. $cleId[$i].'">'. $cleId[$i].'</a></b></td>';
                 $html[0] .= "<td>$volumeTotal</td>";
                 $html[0] .= "<td>$volumeDispo</td>";
                 $html[0] .= "<td>$totalVolume</td>";
@@ -132,7 +132,7 @@ foreach ($pBalances as $cle => $monVolume)
                 $prixUsd = number_format($volumeTotal*$usd, 2, '.', '');
                 $totalUsd = $totalUsd + $prixUsd;
                 $cleId[$i] =  $cle;
-                $html[0] .= '<td><b><a href="index.php?page=order&cle='. $cleId[$i].'">'. $cleId[$i].'</a></b></td>';
+                $html[0] .= '<td><b><a href="http://localhost/CryptoTradersXXII/index.php?page=order&cle='. $cleId[$i].'">'. $cleId[$i].'</a></b></td>';
                 $html[0] .=  "<td>$volumeTotal</td>";
                 $html[0] .= "<td>$volumeDispo</td>";
                 $html[0] .=  "<td>$volumeTotal</td>";
