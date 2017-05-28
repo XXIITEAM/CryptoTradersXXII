@@ -15,9 +15,10 @@
     </div>
 
 </section>
-<h3><b>Mon compte</b></h3>
-<div id="totalCompte"></div>
-<div style="cursor:pointer" id="Tous">Voir toutes les monnaies</div>
+<div style="float:left"><h3><b>Mon compte</b></h3></div>
+<div style="float:left; margin-top:5px;margin-left:10px; cursor:pointer; color:blue;" id="Tous">Voir tous</div>
+<div style="clear:both" id="totalCompte"></div>
+
 <div class="table-responsive">
     <table id="tableHome" class="table table-striped table-bordered">
         <thead>
@@ -58,7 +59,6 @@
                 $('#tableHome').DataTable().fnDestroy();
                 $('#tableHome').DataTable({
                     "paging": false,
-                    "searching": false,
                     "info": false
                 });
                
@@ -80,7 +80,6 @@
                 $("#totalCompte").html(data[1]);
                 $('#tableHome').DataTable({
                     "paging": false,
-                    "searching": false,
                     "info": false
                 });
             },
@@ -100,7 +99,6 @@
                 $('#tableHome').DataTable().fnDestroy();
                 $('#tableHome').DataTable({
                     "paging": false,
-                    "searching": false,
                     "info": false
                 });
             },
