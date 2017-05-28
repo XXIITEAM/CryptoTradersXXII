@@ -17,6 +17,7 @@
 </section>
 <h3><b>Mon compte</b></h3>
 <div id="totalCompte"></div>
+<div style="cursor:pointer" id="Tous">Voir toutes les monnaies</div>
 <div class="table-responsive">
     <table id="tableHome" class="table table-striped table-bordered">
         <thead>
@@ -41,6 +42,26 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $( "#Tous" ).click(function() {
+  setInterval(function () {
+        $.ajax({
+            url: "ajax/t_home.php",
+            type : 'POST',
+            data: { 
+        'filtre':'tous'
+    },
+
+            dataType: "json",
+            success: function (data) {
+                $("#tableau").html(data[0]);
+                $("#totalCompte").html(data[1]);
+            },
+            error: function () {
+                $("#tableau").html('<tr><td class="erreurData" colspan="8"><b>Une erreur est survenue lors du chargement des données</b></td></tr>');
+            }
+        });
+    }, 10000);
+});
         $(".nav li a").removeClass("active");
         $('#lien_home').addClass('active');
 

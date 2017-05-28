@@ -36,11 +36,20 @@ $prixBtc = $tVolume['USDT_BTC']['last'];
 $html = array();
 $html[0] = "";
 $i = 0;
+if(isset($_POST["filtre"]))
+{
+    $filtre = 'tous';
+}
+else
+{
+    $filtre = "";
+}
+$filtre = 'tous';
 foreach ($pBalances as $cle => $monVolume) 
 {															
         $orderVolume = $cBalances[$cle]['onOrders'];
         $volumeTotal = number_format($orderVolume + $monVolume, 8, '.', '');	
-        if($volumeTotal != 0.00000000 &&  $cle != 'USDT') 
+        if($volumeTotal != 0.00000000 &&  $cle != 'USDT' || $filtre == 'tous') 
         {
                 $html[0] .= "<tr>";
                 $volumeDispo = number_format($cBalances[$cle]['available'] + 0, 8, '.', '');
@@ -51,20 +60,7 @@ foreach ($pBalances as $cle => $monVolume)
                 $prixUsd = number_format($usdtValue*$usd, 2, '.', '');
                 $totalUsd = $totalUsd + $prixUsd;
                 $lastBuy = 0;
-                if($cle != 'BTC')
-                {
-                        $totalVolume = $tVolume['BTC_'.$cle]['baseVolume'];
-                        $lastPrice = $tVolume['BTC_'.$cle]['last']." BTC";
-                }
-                else
-                {
-                        $totalVolume = number_format($tVolume['USDT_BTC']['baseVolume'], 8, '.', '');
-                        $lastPrice = number_format($prixBtc, 2, '.', '').' USDT';
-                }
-                $usdtFormatValue = number_format($usdtValue, 2, '.', '');
-                
-              
-                    foreach($tHistory as $keyHisto=>$valueHisto) 
+                 foreach($tHistory as $keyHisto=>$valueHisto) 
                         {
                             if($keyHisto == 'BTC_'.$cle || $keyHisto == 'USDT_'.$cle)
                             {
@@ -74,15 +70,16 @@ foreach ($pBalances as $cle => $monVolume)
                                     {      
                                        if($keyHisto == 'BTC_'.$cle)
                                        {
+                                           $monnaies = 'BTC';
                                            $lastBuy =$tHistory[$keyHisto][$keyHisto2]['rate'];
                                            $lastBuy .= " BTC";
-                                           $gain = ( ( $lastPrice - $lastBuy ) / $lastBuy ) * 100;
                                        }
                                        else
                                        {
+                                           $monnaies = 'USDT';
                                            $lastBuy =number_format($tHistory[$keyHisto][$keyHisto2]['rate'], 2, '.', '');
                                            $lastBuy .= " USDT"; 
-                                           $gain = ( ( $lastPrice - $lastBuy ) / $lastBuy ) * 100;
+                                           
                                        }
                                        break;
                                     }
@@ -95,7 +92,28 @@ foreach ($pBalances as $cle => $monVolume)
                                 break;
                             }
                         }
-               
+                if($cle != 'BTC')
+                {
+                        $totalVolume = $tVolume['BTC_'.$cle]['baseVolume'];
+                        if($monnaies == 'BTC')
+                        {
+                            $lastPrice = $tVolume['BTC_'.$cle]['last']." BTC";
+                        }
+                        else
+                        {
+                            $lastPrice = number_format($tVolume['USDT_'.$cle]['last'], 2, '.', '')." USDT";
+                        }
+                }
+                else
+                {
+                        $totalVolume = number_format($tVolume['USDT_BTC']['baseVolume'], 8, '.', '');
+                        $lastPrice = number_format($prixBtc, 2, '.', '').' BTC';                       
+                }
+                $usdtFormatValue = number_format($usdtValue, 2, '.', '');
+                
+              
+                   
+                $gain = ( ( $lastPrice - $lastBuy ) / $lastBuy ) * 100;
                 $gainFormat = number_format($gain, 2, '.', '');
                 if($gainFormat >= 0)
                 {
