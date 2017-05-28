@@ -6,7 +6,7 @@
     <script src="dist/js/techan.js"></script>
     <script src="dist/js/bootstrap.min.js"></script>
     <script src="dist/js/datatables.js"></script>
-    <script src="../dist/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="../dist/js/jquery.dataTables.js" type="text/javascript"></script>
     <script src="dist/js/datatableBootstrap4.js" type="text/javascript"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>

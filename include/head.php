@@ -24,7 +24,6 @@
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="dist/css/datatables.min.css" rel="stylesheet">
     <!--CHART-->
-    <link rel="stylesheet" type="text/css" href="resources/presenter.css"/>
     <link rel="stylesheet" type="text/css" href="http://www.jchartfx.com/libs/v7/current/styles/jchartfx.css"/>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" /> 
   </head>
