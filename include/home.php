@@ -96,7 +96,6 @@
                 $("#totalCompte").html(data[1]);
                 $('#tableHome').DataTable().fnDestroy();
                 $('#tableHome').DataTable({
-                    "paging": false,
                     "info": false
                 });
             },
