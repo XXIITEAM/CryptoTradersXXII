@@ -21,6 +21,8 @@ $json = file_get_contents($url);
 $data = json_decode($json, TRUE);
 $totalUsd = 0;
 $lastBuy = 0;
+$lastPrice = 0;
+$monnaies = 'BTC';
 $tHistory = $polo->get_trad('ALL');
 foreach($data as $key=>$value) 
 {
@@ -44,7 +46,6 @@ else
 {
     $filtre = "";
 }
-$filtre = 'tous';
 foreach ($pBalances as $cle => $monVolume) 
 {															
         $orderVolume = $cBalances[$cle]['onOrders'];
@@ -94,14 +95,18 @@ foreach ($pBalances as $cle => $monVolume)
                         }
                 if($cle != 'BTC')
                 {
-                        $totalVolume = $tVolume['BTC_'.$cle]['baseVolume'];
-                        if($monnaies == 'BTC')
-                        {
-                            $lastPrice = $tVolume['BTC_'.$cle]['last']." BTC";
-                        }
-                        else
-                        {
-                            $lastPrice = number_format($tVolume['USDT_'.$cle]['last'], 2, '.', '')." USDT";
+                        if(isset($tVolume['BTC_'.$cle]))
+                        {        
+                            $totalVolume = $tVolume['BTC_'.$cle]['baseVolume'];
+                            if($monnaies == 'BTC')
+                            {
+                                $lastPrice = $tVolume['BTC_'.$cle]['last']." BTC";
+                            }
+                            else
+                            {
+                                if(isset($tVolume['USDT_'.$cle]))
+                                $lastPrice = number_format($tVolume['USDT_'.$cle]['last'], 2, '.', '')." USDT";
+                            }
                         }
                 }
                 else
@@ -112,7 +117,7 @@ foreach ($pBalances as $cle => $monVolume)
                 $usdtFormatValue = number_format($usdtValue, 2, '.', '');
                 
               
-                   
+                if($lastBuy > 0)   
                 $gain = ( ( $lastPrice - $lastBuy ) / $lastBuy ) * 100;
                 $gainFormat = number_format($gain, 2, '.', '');
                 if($gainFormat >= 0)
