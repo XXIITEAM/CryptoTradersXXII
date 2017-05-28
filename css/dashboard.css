@@ -146,3 +146,7 @@ h3 {
 #tableHome_filter label {
     float: right;
 }
+
+#tableHome_length {
+    float: left;
+}

@@ -44,7 +44,7 @@ else
         function(data){ 
                  $("#tableau_ordres").html(data);
                     $('#tableHome').DataTable({
-                    "paging": false,
+                    "paging": true,
                     "searching": true,
                     "info": false 
                 }); 
