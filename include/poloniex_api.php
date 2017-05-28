@@ -154,7 +154,7 @@ public function get_trad( $currencyPair )
             $date = new DateTime();
             $req['start'] = $date->getTimestamp()-18000000;
             $req['end'] = $date->getTimestamp();
-        $req['currencyPair'] = strtoupper( $currencyPair );
+            $req['currencyPair'] = strtoupper( $currencyPair );
 
         return $this->query( $req );
     
@@ -194,7 +194,7 @@ public function get_trad( $currencyPair )
     }
 */
 
-    public function get_chart_data()
+    public function get_chart_data( $currencyPair )
     {
         $req = array(
             'command' => 'returnChartData'
@@ -203,7 +203,24 @@ public function get_trad( $currencyPair )
         // return $this->query( $req );
         return $this->retrieveJSON( $req );
     }
+    
+    public function get_chart($currencyPair)
+    {
+            $req = array(
+            'command' => 'returnChartData'
+        );
+            $currencyPair = 'USDT_BTC';
+            $req['currencyPair'] = strtoupper( $currencyPair );
+            $date = new DateTime();
+            $req['start'] = $date->getTimestamp()-86400;
+            $req['end'] = $date->getTimestamp();
+            $req['period'] = 300;
+            
 
+        return $this->query( $req );
+    
+      
+    }
 
     public function get_currencies()
     {

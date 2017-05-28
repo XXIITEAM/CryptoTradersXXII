@@ -9,7 +9,8 @@ require_once('../include/apikey.php');
 $polo = new Poloniex_API($api_key, $secret_key);
 // Call get balances.
 $tHistory = $polo->get_trad('ALL');
-//print_r($tHistory);
+//$tChart = $polo->get_chart('ALL');
+//print_r($tChart);
 // Cycle through the array
 $html2= "";
 //$cle ='AMP';
@@ -21,6 +22,7 @@ $cle = $_POST['cleOrder'];
 else {
     $cle = 'XRP';
 }
+
 foreach($tHistory as $keyHisto=>$valueHisto) 
         {
                  if($keyHisto == 'BTC_'.$cle || $keyHisto == 'USDT_'.$cle)
@@ -39,7 +41,7 @@ foreach($tHistory as $keyHisto=>$valueHisto)
                     $categorieOrdre = $valueHisto2['category'];
                     
                     $html2 .= "<tr>";        
-                    $html2.= "<td>$keyHisto</td>";
+                    $html2 .= "<td>$keyHisto</td>";
                     $html2 .= "<td>$globalTradeIDOrdre</td>";
                     $html2 .= "<td>$tradeIDOrdre</td>";
                     $html2 .= "<td>$dateOrdre</td>";
@@ -48,8 +50,21 @@ foreach($tHistory as $keyHisto=>$valueHisto)
                     $html2 .= "<td>$totalOrdre</td>";
                     $html2 .= "<td>$fraisOrdre</td>";
                     $html2 .= "<td>$numOrdre</td>";
-                    $html2 .= "<td>$typeOrdre</td>";
-                    $html2 .= "<td>$categorieOrdre</td>";
+                    if($typeOrdre == "buy")
+                    {
+                        $html2 .= "<td class='orderBuy'><b>Achat</b></td>"; 
+                    }
+                    else
+                    {
+                        $html2 .= "<td class='orderSell'><b>Vente</b></td>";  
+                    }
+                    if($categorieOrdre == "exchange")
+                    {
+                        $html2 .= "<td class='orderExchange'><b>Exchange</b></td>"; 
+                    }
+                    else {
+                        $html2 .= "<td class='orderMargin'><b>Margin</b></td>"; 
+                    }
                     $html2 .= "</tr>";
                 }
                 break;

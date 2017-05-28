@@ -3,14 +3,14 @@
           <div class="table-responsive">
            <table id="tableHome" class="table table-striped table-bordered" width="100%" cellspacing="0" style="text-align:center">
               <thead>
-                <tr>
+                <tr id="titreTableauOrdres">
                     <th>Crypto</th>
-                    <th>GlobalTradeID</th>
-                    <th>TradeID</th>
+                    <th>Block ID</th>
+                    <th>Transaction ID</th>
                     <th>Date</th>
-                    <th>Rate</th>
-                    <th>Montant</th>
-                    <th>total</th>
+                    <th>Prix / U</th>
+                    <th>Quantité</th>
+                    <th>Prix total</th>
                     <th>Frais</th>
                     <th>Numéro</th>
                     <th>Type</th>
@@ -29,7 +29,7 @@ $cle = $_GET['monnaie'];
 }
 else
 {
-    $cle = 'AMP';
+    $cle = 'ALL';
 }
 ?>
   
@@ -54,20 +54,5 @@ else
                 
               
             });     
-            });
-            
-//             setInterval(function(){
-//                    $.ajax({
-//                url: "ajax/t_order.php",
-//                dataType : "json",
-//                success: function(data){
-//                  $("#tableau_ordres").html(data[0]) ;
-//                },
-//                error:function(erreur){
-//                    //alert(erreur);
-//                }
-//            });
-//                },10000);    
-//            
-//        
+            });    
 	</script>

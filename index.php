@@ -20,5 +20,6 @@ if(isset($_GET['page'])){
   
 ?>  
 
+
 <?php
   include'include/foot.php'; 

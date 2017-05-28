@@ -111,11 +111,11 @@ foreach ($pBalances as $cle => $monVolume)
                 $html[0] .= "<td>$btcValue BTC / $usdtFormatValue USDT / <b>$prixUsd $</b></td>";
                 if($gainFormat >= 0)
                 {
-                   $html[0] .= "<td style='color:green'><b>$gainFormat %</b></td>"; 
+                   $html[0] .= "<td class='pourcentGain'><b>$gainFormat %</b></td>"; 
                 }
                 else
                 {
-                   $html[0] .= "<td style='color:red'><b>$gainFormat %</b></td>";  
+                   $html[0] .= "<td class='pourcentPerte'><b>$gainFormat %</b></td>";  
                 }
                 
                 $html[0] .= "</tr>";
@@ -140,7 +140,7 @@ foreach ($pBalances as $cle => $monVolume)
                 $html[0] .= "<td>$usd $</td>";
                 $html[0] .= "<td>$lastBuy</td>";
                 $html[0] .= "<td>$btcValue BTC / $volumeTotal USDT / <b>$prixUsd $</b></td>";
-                $html[0] .= "<td style='color:green'><b>0 %</b></td>";
+                $html[0] .= "<td class='pourcentGain'><b>0 %</b></td>";
                 $html[0] .= "</tr>";
         }
      $i ++;   	
