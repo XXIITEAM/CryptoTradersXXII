@@ -44,6 +44,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $( "#Tous" ).click(function() {
+            alert("click ok");
             clearInterval(inter);
   setInterval(function () {
         $.ajax({
@@ -54,9 +55,10 @@
                         },
             dataType: "json",
             success: function (data) {
-                $("#tableau").html(data[0]);
+                
                 $("#totalCompte").html(data[1]);
-                $('#tableHome').DataTable().fnDestroy();
+                $('#tableHome').DataTable().destroy();
+                $("#tableau").html(data[0]);
                 $('#tableHome').DataTable({
                     "info": false
                 });
@@ -75,11 +77,13 @@
             url: "ajax/t_home.php",
             dataType: "json",
             success: function (data) {
-                $("#tableau").html(data[0]);
+                
                 $("#totalCompte").html(data[1]);
+                $("#tableau").html(data[0]);
                 $('#tableHome').DataTable({
                     "info": false
                 });
+                
             },
             error: function () {
                 $("#tableau").html('<tr><td class="erreurData" colspan="8";><b>Une erreur est survenue lors du chargement des données</b></td></tr>');
@@ -92,9 +96,9 @@
             url: "ajax/t_home.php",
             dataType: "json",
             success: function (data) {
-                $("#tableau").html(data[0]);
                 $("#totalCompte").html(data[1]);
-                $('#tableHome').DataTable().fnDestroy();
+                $('#tableHome').DataTable().destroy();
+                 $("#tableau").html(data[0]);
                 $('#tableHome').DataTable({
                     "info": false
                 });
