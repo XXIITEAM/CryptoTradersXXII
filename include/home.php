@@ -43,7 +43,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $( "#Tous" ).click(function() {
+        $( "#Tous" ).click(function() { 
             clearInterval(inter);
   setInterval(function () {
         $.ajax({
