@@ -58,7 +58,6 @@
                 $("#totalCompte").html(data[1]);
                 $('#tableHome').DataTable().fnDestroy();
                 $('#tableHome').DataTable({
-                    "paging": false,
                     "info": false
                 });
                
@@ -79,7 +78,6 @@
                 $("#tableau").html(data[0]);
                 $("#totalCompte").html(data[1]);
                 $('#tableHome').DataTable({
-                    "paging": false,
                     "info": false
                 });
             },
