@@ -44,7 +44,6 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $( "#Tous" ).click(function() {
-            alert("click ok");
             clearInterval(inter);
   setInterval(function () {
         $.ajax({
