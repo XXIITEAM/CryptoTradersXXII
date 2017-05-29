@@ -62,8 +62,10 @@ $("#buttonTableauDeBordDeplier").click(function(){
   $("#buttonTableauDeBordPlier").show();
 });
         $( "#Tous" ).click(function() {
-            clearInterval(inter);
+        $('#ajax-loading').show();
+        clearInterval(inter);
   setInterval(function () {
+       $('#ajax-loading').show();
         $.ajax({
             url: "ajax/t_home.php",
             type : 'POST',
@@ -77,38 +79,45 @@ $("#buttonTableauDeBordDeplier").click(function(){
                 $('#tableHome').DataTable().destroy();
                 $("#tableau").html(data[0]);
                 $('#tableHome').DataTable({
-                    "info": false
+                    "paging": false,
+                    "searching": true,
+                    "info": false 
                 });
-               
+               $('#ajax-loading').hide();
             },
             error: function () {
+                $('#ajax-loading').hide();
                 $("#tableau").html('<tr><td class="erreurData" colspan="8"><b>Une erreur est survenue lors du chargement des données</b></td></tr>');
             }
         });
-    }, 10000);
+    }, 20000);
 });
         $(".nav li a").removeClass("active");
         $('#lien_home').addClass('active');
-
+        $('#ajax-loading').show();
         $.ajax({
             url: "ajax/t_home.php",
             dataType: "json",
             success: function (data) {
-                
+                $('#ajax-loading').hide();
                 $("#totalCompte").html(data[1]);
                 $("#tableau").html(data[0]);
                 $('#tableHome').DataTable({
-                    "info": false
+                     "paging": false,
+                    "searching": true,
+                    "info": false 
                 });
                 
             },
             error: function () {
+                $('#ajax-loading').hide();
                 $("#tableau").html('<tr><td class="erreurData" colspan="8";><b>Une erreur est survenue lors du chargement des données</b></td></tr>');
             }
         });
     });
 
     var inter = setInterval(function () {
+    $('#ajax-loading').show();
         $.ajax({
             url: "ajax/t_home.php",
             dataType: "json",
@@ -117,13 +126,17 @@ $("#buttonTableauDeBordDeplier").click(function(){
                 $('#tableHome').DataTable().destroy();
                  $("#tableau").html(data[0]);
                 $('#tableHome').DataTable({
-                    "info": false
+                     "paging": false,
+                    "searching": true,
+                    "info": false 
                 });
+                $('#ajax-loading').hide();
             },
             error: function () {
+                $('#ajax-loading').hide();
                 $("#tableau").html('<tr><td class="erreurData" colspan="8"><b>Une erreur est survenue lors du chargement des données</b></td></tr>');
             }
         });
-    }, 10000);
+    }, 20000);
 
 </script>
