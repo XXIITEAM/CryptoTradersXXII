@@ -59,7 +59,11 @@
                 $('#tableHome').DataTable().destroy();
                 $("#tableau").html(data[0]);
                 $('#tableHome').DataTable({
-                    "info": false
+                    "info": false,
+                    "paging": false,
+                    "searching": true,
+                    "info": false 
+                    
                 });
                
             },
@@ -80,7 +84,10 @@
                 $("#totalCompte").html(data[1]);
                 $("#tableau").html(data[0]);
                 $('#tableHome').DataTable({
-                    "info": false
+                    "info": false,
+                    "paging": false,
+                    "searching": true,
+                    "info": false 
                 });
                 
             },
@@ -99,7 +106,10 @@
                 $('#tableHome').DataTable().destroy();
                  $("#tableau").html(data[0]);
                 $('#tableHome').DataTable({
-                    "info": false
+                    "info": false,
+                    "paging": false,
+                    "searching": true,
+                    "info": false 
                 });
             },
             error: function () {
