@@ -1,8 +1,13 @@
-<h3><b>Tableaux de bord</b></h3>
+<div style="width:100px; margin:0 auto; text-align:center">
+<div style="float:left; cursor:pointer; color:blue;" id="buttonTableauDeBordPlier">Plier</div>
+<div style="float:left; cursor:pointer; color:blue;" id="buttonTableauDeBordDeplier">Déplier</div>
+</div>
 <!--CHART--> 
-
+<div style="clear:both"></div>
 <!--PlaceHolder-->
-<section class="row text-center placeholders">
+<section id="TableauDeBord" class="row text-center placeholders">
+    <h3><b>Tableaux de bord</b></h3>
+    
     <div class="col-6 col-sm-3 placeholder containerGraph">
         <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
             <h4>Répartition des monnaies</h4>
@@ -43,6 +48,19 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+         $("#TableauDeBord").slideUp();
+         $("#buttonTableauDeBordPlier").hide();
+        
+        $("#buttonTableauDeBordPlier").click(function(){
+  $("#TableauDeBord").slideUp();
+    $("#buttonTableauDeBordDeplier").show();
+  $("#buttonTableauDeBordPlier").hide();
+});
+$("#buttonTableauDeBordDeplier").click(function(){
+  $("#TableauDeBord").slideDown();
+  $("#buttonTableauDeBordDeplier").hide();
+  $("#buttonTableauDeBordPlier").show();
+});
         $( "#Tous" ).click(function() {
             clearInterval(inter);
   setInterval(function () {

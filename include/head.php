@@ -56,7 +56,7 @@
         </form>
       </div>
     </nav>
-    <div class="container-fluid">
+<!--    <div class="container-fluid">
       <div class="row">
         <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
           <ul class="nav nav-pills flex-column">
@@ -75,5 +75,5 @@
                 <a class="nav-link" target="_blank" href="https://poloniex.com">Poloniex</a>
             </li>
           </ul>
-        </nav>
-        <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+        </nav>-->
+        <main class="col-sm-9 col-md-12 pt-3">
