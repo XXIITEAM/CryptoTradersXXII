@@ -64,7 +64,7 @@ $("#buttonTableauDeBordDeplier").click(function(){
         $( "#Tous" ).click(function() {
         $('#ajax-loading').show();
         clearInterval(inter);
-  setInterval(function () {
+        setInterval(function () {
        $('#ajax-loading').show();
         $.ajax({
             url: "ajax/t_home.php",
