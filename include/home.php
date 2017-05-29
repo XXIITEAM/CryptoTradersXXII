@@ -1,8 +1,13 @@
-<h3><b>Tableaux de bord</b></h3>
+<div style="width:100px; margin:0 auto; text-align:center">
+<div style="float:left; cursor:pointer; color:blue;" id="buttonTableauDeBordPlier">Plier</div>
+<div style="float:left; cursor:pointer; color:blue;" id="buttonTableauDeBordDeplier">Déplier</div>
+</div>
 <!--CHART--> 
-
+<div style="clear:both"></div>
 <!--PlaceHolder-->
-<section class="row text-center placeholders">
+<section id="TableauDeBord" class="row text-center placeholders">
+    <h3><b>Tableaux de bord</b></h3>
+    
     <div class="col-6 col-sm-3 placeholder containerGraph">
         <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
             <h4>Répartition des monnaies</h4>
@@ -43,9 +48,24 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $( "#Tous" ).click(function() { 
-            clearInterval(inter);
-  setInterval(function () {
+         $("#TableauDeBord").slideUp();
+         $("#buttonTableauDeBordPlier").hide();
+        
+        $("#buttonTableauDeBordPlier").click(function(){
+  $("#TableauDeBord").slideUp();
+    $("#buttonTableauDeBordDeplier").show();
+  $("#buttonTableauDeBordPlier").hide();
+});
+$("#buttonTableauDeBordDeplier").click(function(){
+  $("#TableauDeBord").slideDown();
+  $("#buttonTableauDeBordDeplier").hide();
+  $("#buttonTableauDeBordPlier").show();
+});
+        $( "#Tous" ).click(function() {
+        $('#ajax-loading').show();
+        clearInterval(inter);
+        setInterval(function () {
+       $('#ajax-loading').show();
         $.ajax({
             url: "ajax/t_home.php",
             type : 'POST',
@@ -59,45 +79,58 @@
                 $('#tableHome').DataTable().destroy();
                 $("#tableau").html(data[0]);
                 $('#tableHome').DataTable({
+<<<<<<< HEAD
                     "info": false,
                     "paging": false,
                     "searching": true,
                     "info": false 
                     
+=======
+                    "paging": false,
+                    "searching": true,
+                    "info": false 
+>>>>>>> 2d5727b76e454baf3a6f69120186b5f6a8973e5c
                 });
-               
+               $('#ajax-loading').hide();
             },
             error: function () {
+                $('#ajax-loading').hide();
                 $("#tableau").html('<tr><td class="erreurData" colspan="8"><b>Une erreur est survenue lors du chargement des données</b></td></tr>');
             }
         });
-    }, 10000);
+    }, 20000);
 });
         $(".nav li a").removeClass("active");
         $('#lien_home').addClass('active');
-
+        $('#ajax-loading').show();
         $.ajax({
             url: "ajax/t_home.php",
             dataType: "json",
             success: function (data) {
-                
+                $('#ajax-loading').hide();
                 $("#totalCompte").html(data[1]);
                 $("#tableau").html(data[0]);
                 $('#tableHome').DataTable({
+<<<<<<< HEAD
                     "info": false,
                     "paging": false,
+=======
+                     "paging": false,
+>>>>>>> 2d5727b76e454baf3a6f69120186b5f6a8973e5c
                     "searching": true,
                     "info": false 
                 });
                 
             },
             error: function () {
+                $('#ajax-loading').hide();
                 $("#tableau").html('<tr><td class="erreurData" colspan="8";><b>Une erreur est survenue lors du chargement des données</b></td></tr>');
             }
         });
     });
 
     var inter = setInterval(function () {
+    $('#ajax-loading').show();
         $.ajax({
             url: "ajax/t_home.php",
             dataType: "json",
@@ -106,16 +139,22 @@
                 $('#tableHome').DataTable().destroy();
                  $("#tableau").html(data[0]);
                 $('#tableHome').DataTable({
+<<<<<<< HEAD
                     "info": false,
                     "paging": false,
+=======
+                     "paging": false,
+>>>>>>> 2d5727b76e454baf3a6f69120186b5f6a8973e5c
                     "searching": true,
                     "info": false 
                 });
+                $('#ajax-loading').hide();
             },
             error: function () {
+                $('#ajax-loading').hide();
                 $("#tableau").html('<tr><td class="erreurData" colspan="8"><b>Une erreur est survenue lors du chargement des données</b></td></tr>');
             }
         });
-    }, 10000);
+    }, 20000);
 
 </script>

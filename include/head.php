@@ -50,13 +50,15 @@
             <a class="nav-link" href="#">Aide</a>
           </li>
         </ul>
+        <div id="ajax-loading" style="width:53px; height:40px; position:absolute; margin-left:37%; background-color:rgba(2,162,216,0.2); border-radius:5px"><img width=53 height=40 src="images/5.gif" alt="Loading" /></div>
         <form class="form-inline mt-2 mt-md-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Saisir une recherche ...">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Recherche</button>
         </form>
       </div>
+                  
     </nav>
-    <div class="container-fluid">
+<!--    <div class="container-fluid">
       <div class="row">
         <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
           <ul class="nav nav-pills flex-column">
@@ -75,5 +77,6 @@
                 <a class="nav-link" target="_blank" href="https://poloniex.com">Poloniex</a>
             </li>
           </ul>
-        </nav>
-        <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+        </nav>-->
+        <main class="col-sm-9 col-md-12 pt-3">
+

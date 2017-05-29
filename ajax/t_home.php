@@ -33,7 +33,7 @@ foreach($data as $key=>$value)
 			}
 }
 
-$prixBtc = $tVolume['USDT_BTC']['last'];
+
 // Cycle through the array
 $html = array();
 $html[0] = "";
@@ -47,7 +47,7 @@ else
     $filtre = "";
 }
 foreach ($pBalances as $cle => $monVolume) 
-{															
+{	$prixBtc = $tVolume['USDT_BTC']['last'];													
         $orderVolume = $cBalances[$cle]['onOrders'];
         $volumeTotal = number_format($orderVolume + $monVolume, 8, '.', '');	
         if($volumeTotal != 0.00000000 &&  $cle != 'USDT' || $filtre == 'tous') 
@@ -105,7 +105,9 @@ foreach ($pBalances as $cle => $monVolume)
                             else
                             {
                                 if(isset($tVolume['USDT_'.$cle]))
+                                {
                                 $lastPrice = number_format($tVolume['USDT_'.$cle]['last'], 2, '.', '')." USDT";
+                                }
                             }
                         }
                 }
@@ -117,8 +119,10 @@ foreach ($pBalances as $cle => $monVolume)
                 $usdtFormatValue = number_format($usdtValue, 2, '.', '');
                 
               
-                if($lastBuy > 0)   
+                if($lastBuy > 0)  
+                {
                 $gain = ( ( $lastPrice - $lastBuy ) / $lastBuy ) * 100;
+                }
                 $gainFormat = number_format($gain, 2, '.', '');
                 if($gainFormat >= 0)
                 {
@@ -170,7 +174,7 @@ foreach ($pBalances as $cle => $monVolume)
 }
 
 $tFormatDollars = number_format($tDollars, 2, '.', '');
-$tFormatUSD = number_format($totalUsd, 2, '.', '');
+$tFormatUSD = number_format($totalUsd *1.02, 2, '.', '');
 $html[1] ="<b>[ $tBtc BTC || $tFormatDollars USDT || $tFormatUSD $ ]</b>";
 echo json_encode($html);
 exit();
