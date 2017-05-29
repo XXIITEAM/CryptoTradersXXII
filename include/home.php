@@ -79,17 +79,9 @@ $("#buttonTableauDeBordDeplier").click(function(){
                 $('#tableHome').DataTable().destroy();
                 $("#tableau").html(data[0]);
                 $('#tableHome').DataTable({
-<<<<<<< HEAD
                     "info": false,
                     "paging": false,
                     "searching": true,
-                    "info": false 
-                    
-=======
-                    "paging": false,
-                    "searching": true,
-                    "info": false 
->>>>>>> 2d5727b76e454baf3a6f69120186b5f6a8973e5c
                 });
                $('#ajax-loading').hide();
             },
@@ -111,14 +103,9 @@ $("#buttonTableauDeBordDeplier").click(function(){
                 $("#totalCompte").html(data[1]);
                 $("#tableau").html(data[0]);
                 $('#tableHome').DataTable({
-<<<<<<< HEAD
                     "info": false,
                     "paging": false,
-=======
-                     "paging": false,
->>>>>>> 2d5727b76e454baf3a6f69120186b5f6a8973e5c
-                    "searching": true,
-                    "info": false 
+                   "searching": true,
                 });
                 
             },
@@ -139,14 +126,9 @@ $("#buttonTableauDeBordDeplier").click(function(){
                 $('#tableHome').DataTable().destroy();
                  $("#tableau").html(data[0]);
                 $('#tableHome').DataTable({
-<<<<<<< HEAD
                     "info": false,
                     "paging": false,
-=======
-                     "paging": false,
->>>>>>> 2d5727b76e454baf3a6f69120186b5f6a8973e5c
                     "searching": true,
-                    "info": false 
                 });
                 $('#ajax-loading').hide();
             },
