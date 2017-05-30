@@ -151,8 +151,7 @@ foreach ($pBalances as $cle => $monVolume)
         if($cle == 'USDT')
         {
                 $lastBuy = 0;
-                $html[0] .= "<tr>";	
-                //$volumeDispo = $cBalances[$cle]['available'] + 0;
+                $html[0] .= "<tr>";
                 $btcValue = number_format($volumeTotal/$prixBtc, 8, '.', '');
                 $tDollars = $tDollars + $volumeTotal;
                 $tBtc = $tBtc + $btcValue;
