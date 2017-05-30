@@ -148,11 +148,11 @@ foreach ($pBalances as $cle => $monVolume)
                 $html[0] .= "</tr>";
 
         }
-        if($cle == 'USDT' && $cBalances[$cle]['available'] >= 0.01)
+        if($cle == 'USDT')
         {
                 $lastBuy = 0;
                 $html[0] .= "<tr>";	
-                $volumeDispo = $cBalances[$cle]['available'] + 0;
+                //$volumeDispo = $cBalances[$cle]['available'] + 0;
                 $btcValue = number_format($volumeTotal/$prixBtc, 8, '.', '');
                 $tDollars = $tDollars + $volumeTotal;
                 $tBtc = $tBtc + $btcValue;
@@ -161,20 +161,20 @@ foreach ($pBalances as $cle => $monVolume)
                 $cleId[$i] =  $cle;
                 $html[0] .= '<td><b><a href="index.php?page=order&monnaie='. $cleId[$i].'">'. $cleId[$i].'</a></b></td>';
                 $html[0] .=  "<td>$volumeTotal</td>";
-                $html[0] .= "<td>$volumeDispo</td>";
+                $html[0] .= "<td>$volumeTotal</td>";
                 $html[0] .=  "<td>$volumeTotal</td>";
                 $volumeTotal = number_format($volumeTotal, 2, '.', '');
                 $html[0] .= "<td>$usd $</td>";
-                $html[0] .= "<td>$lastBuy</td>";
+                $html[0] .= "<td>-</td>";
                 $html[0] .= "<td>$btcValue BTC / $volumeTotal USDT / <b>$prixUsd $</b></td>";
-                $html[0] .= "<td class='pourcentGain'><b>0 %</b></td>";
+                $html[0] .= "<td>-</td>";
                 $html[0] .= "</tr>";
         }
      $i ++;   	
 }
 
 $tFormatDollars = number_format($tDollars, 2, '.', '');
-$tFormatUSD = number_format($totalUsd *1.02, 2, '.', '');
+$tFormatUSD = number_format($totalUsd, 2, '.', '');
 $html[1] ="<b>[ $tBtc BTC || $tFormatDollars USDT || $tFormatUSD $ ]</b>";
 echo json_encode($html);
 exit();
