@@ -46,7 +46,8 @@ else
                     $('#tableHome').DataTable({
                     "paging": true,
                     "searching": true,
-                    "info": false 
+                    "info": false,
+                    "stateSave": true
                 }); 
 
                 

@@ -147,6 +147,7 @@ $("#buttonTableauDeBordDeplier").click(function(){
                     "info": false,
                     "paging": false,
                     "searching": true,
+                    "stateSave": true
                 });
                $('#ajax-loading').hide();
             },
@@ -172,6 +173,7 @@ $("#buttonTableauDeBordDeplier").click(function(){
                     "info": false,
                     "paging": false,
                    "searching": true,
+                   "stateSave": true
                 });
                 
             },
@@ -196,6 +198,7 @@ $("#buttonTableauDeBordDeplier").click(function(){
                     "info": false,
                     "paging": false,
                     "searching": true,
+                    "stateSave": true
                 });
                 $('#ajax-loading').hide();
             },
