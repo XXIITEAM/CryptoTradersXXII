@@ -150,3 +150,7 @@ h3 {
 #tableHome_length {
     float: left;
 }
+
+th { 
+    white-space: nowrap; 
+}

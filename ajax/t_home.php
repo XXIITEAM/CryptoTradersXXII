@@ -10,6 +10,7 @@ $polo = new Poloniex_API($api_key, $secret_key);
 $totalVolume = '';
 $orderVolume = 0;
 $gain = 0;
+$gainTotal =0;
 // Call get balances.
 $pBalances = $polo->get_balances();
 $cBalances = $polo->get_complete_balances();
@@ -126,7 +127,7 @@ foreach ($pBalances as $cle => $monVolume)
                 $gainFormat = number_format($gain, 2, '.', '');
                 if($gainFormat >= 0)
                 {
-                    $gainFormat = '+ '.$gainFormat;
+                    $gainFormat = '+'.$gainFormat;
                 }
                 $cleId[$i] =  $cle;
                 $html[0] .= '<td><b><a href="index.php?page=order&monnaie='. $cleId[$i].'">'. $cleId[$i].'</a></b></td>';
@@ -144,9 +145,11 @@ foreach ($pBalances as $cle => $monVolume)
                 {
                    $html[0] .= "<td class='pourcentPerte'><b>$gainFormat %</b></td>";  
                 }
-                
+                $gainTotal = $gainTotal+$gain;
                 $html[0] .= "</tr>";
-
+                
+                
+                
         }
         if($cle == 'USDT')
         {
@@ -174,6 +177,28 @@ foreach ($pBalances as $cle => $monVolume)
 
 $tFormatDollars = number_format($tDollars, 2, '.', '');
 $tFormatUSD = number_format($totalUsd, 2, '.', '');
+$gFormatToral = number_format($gainTotal, 2, '.', '');
+$totalGainCalcul = str_replace( ".", "", $gFormatToral);
+$totalGainCalcul1 = "1.".$totalGainCalcul;
+$totalGainDol = $tFormatUSD / $totalGainCalcul1;
+$totalGainDol1 = $tFormatUSD - $totalGainDol;
+$gFormatTotalGainDol1 = number_format($totalGainDol1, 2, '.', '');
 $html[1] ="<b>[ $tBtc BTC || $tFormatDollars USDT || $tFormatUSD $ ]</b>";
+if($gFormatToral >= 0)
+    {
+       $html[2] = "<tr>
+                <th colspan=6></th>
+                <th colspan=1 style='text-align:center'>Gains : $gFormatTotalGainDol1 $</th>
+                <th class='pourcentGain' colspan=1 style='text-align:center'>Gains : $gFormatToral %</th>
+                </tr>";
+    }
+else
+    {
+        $html[2] = "<tr>
+                <th colspan=6></th>
+                <th colspan=1 style='text-align:center'>Pertes : $gFormatTotalGainDol1 $</th>
+                <th class='pourcentPerte' colspan=1 style='text-align:center'>Pertes : $gFormatToral %</th>
+                </tr>";
+    }
 echo json_encode($html);
 exit();

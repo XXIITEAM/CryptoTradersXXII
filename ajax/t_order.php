@@ -1,13 +1,11 @@
 
 <?php
-
-// Init file poloniex.php.
 require_once('../include/poloniex_api.php');
 require_once('../include/apikey.php');
 
 // Nouvelle instance de la classe poloniex.
 $polo = new Poloniex_API($api_key, $secret_key);
-// Call get balances.
+// Appel de l'historique
 $tHistory = $polo->get_trad('ALL');
 //$tChart = $polo->get_chart('ALL');
 //print_r($tChart);
@@ -25,8 +23,8 @@ else {
 
 foreach($tHistory as $keyHisto=>$valueHisto) 
         {
-                 if($keyHisto == 'BTC_'.$cle || $keyHisto == 'USDT_'.$cle)
-                 {
+            if($keyHisto == 'BTC_'.$cle || $keyHisto == 'USDT_'.$cle)
+            {
                 foreach($valueHisto as $keyHisto2 => $valueHisto2) 
                 {
                     $globalTradeIDOrdre = $valueHisto2['globalTradeID'];
@@ -68,7 +66,7 @@ foreach($tHistory as $keyHisto=>$valueHisto)
                     $html2 .= "</tr>";
                 }
                 break;
-                 }                                 	
+            }                                 	
 }
 echo $html2;
 exit();
