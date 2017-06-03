@@ -115,7 +115,7 @@ foreach ($pBalances as $cle => $monVolume)
                 else
                 {
                         $totalVolume = number_format($tVolume['USDT_BTC']['baseVolume'], 8, '.', '');
-                        $lastPrice = number_format($prixBtc, 2, '.', '').' BTC';                       
+                        $lastPrice = number_format($prixBtc, 2, '.', '').' USDT';                       
                 }
                 $usdtFormatValue = number_format($usdtValue, 2, '.', '');
                 
@@ -177,19 +177,26 @@ foreach ($pBalances as $cle => $monVolume)
 
 $tFormatDollars = number_format($tDollars, 2, '.', '');
 $tFormatUSD = number_format($totalUsd, 2, '.', '');
-$gFormatToral = number_format($gainTotal, 2, '.', '');
-$totalGainCalcul = str_replace( ".", "", $gFormatToral);
-$totalGainCalcul1 = "1.".$totalGainCalcul;
+
+//---------------------Total gains/pertes en % et $
+$gFormatTotal = number_format($gainTotal, 2, '.', '');
+$totalGainCalcul = str_replace( ".", "", $gFormatTotal);
+if ($gFormatTotal > 100.00) {
+    $totalGainCalcul1 = "2.".$totalGainCalcul;
+} 
+else {
+    $totalGainCalcul1 = "1.".$totalGainCalcul;
+}
 $totalGainDol = $tFormatUSD / $totalGainCalcul1;
 $totalGainDol1 = $tFormatUSD - $totalGainDol;
 $gFormatTotalGainDol1 = number_format($totalGainDol1, 2, '.', '');
 $html[1] ="<b>[ $tBtc BTC || $tFormatDollars USDT || $tFormatUSD $ ]</b>";
-if($gFormatToral >= 0)
+if($gFormatTotal >= 0)
     {
        $html[2] = "<tr>
                 <th colspan=6></th>
                 <th colspan=1 style='text-align:center'>Gains : $gFormatTotalGainDol1 $</th>
-                <th class='pourcentGain' colspan=1 style='text-align:center'>Gains : $gFormatToral %</th>
+                <th class='pourcentGain' colspan=1 style='text-align:center'>Gains : $gFormatTotal %</th>
                 </tr>";
     }
 else
@@ -197,8 +204,10 @@ else
         $html[2] = "<tr>
                 <th colspan=6></th>
                 <th colspan=1 style='text-align:center'>Pertes : $gFormatTotalGainDol1 $</th>
-                <th class='pourcentPerte' colspan=1 style='text-align:center'>Pertes : $gFormatToral %</th>
+                <th class='pourcentPerte' colspan=1 style='text-align:center'>Pertes : $gFormatTotal %</th>
                 </tr>";
     }
+//----------------------------------Fin calcul Gain Total
+    
 echo json_encode($html);
 exit();
