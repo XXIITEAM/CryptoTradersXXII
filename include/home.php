@@ -23,7 +23,7 @@
 <div style="float:left"><h3><b>Mon compte</b></h3></div>
 <div style="float:left; margin-top:5px;margin-left:10px; cursor:pointer; color:blue;" id="Tous">Voir tous</div>
 <div style="clear:both" id="totalCompte"></div>
-
+<div style="text-align:center;margin:0 auto" id="pause"><h4>Actualisation automatique</h4></div>
 <div class="table-responsive">
     <table id="tableHome" class="table table-striped table-bordered">
         <thead>
@@ -47,9 +47,73 @@
 
 
 <script type="text/javascript">
+    var monfiltre = "";
+    var inter;
     $(document).ready(function () {
+        $("#pause").hide();
          $("#TableauDeBord").slideUp();
          $("#buttonTableauDeBordPlier").hide();
+        
+         $("#titreTableauHome").click(function(){
+            clearInterval(inter);
+            $("#pause").show();
+         });
+         $("#pause").click(function(){
+            clearInterval(inter);
+            $("#pause").hide();
+            if(monfiltre==="tous")
+            {
+                 $('#ajax-loading').show();
+        clearInterval(inter);
+        inter = setInterval(function () {
+       $('#ajax-loading').show();
+        $.ajax({
+            url: "ajax/t_home.php",
+            type : 'POST',
+                        data: { 
+                        'filtre':'tous'
+                        },
+            dataType: "json",
+            success: function (data) {
+                
+                $("#totalCompte").html(data[1]);
+                $('#tableHome').DataTable().destroy();
+                $("#tableau").html(data[0]);
+               $('#ajax-loading').hide();
+            },
+            error: function () {
+                $('#ajax-loading').hide();
+                $("#tableau").html('<tr><td class="erreurData" colspan="8"><b>Une erreur est survenue lors du chargement des données</b></td></tr>');
+            }
+        });
+    }, 20000);
+            }else{
+                 $('#ajax-loading').show();
+           var inter = setInterval(function () {
+    monfiltre = "";
+    $('#ajax-loading').show();
+        $.ajax({
+            url: "ajax/t_home.php",
+            dataType: "json",
+            success: function (data) {
+                $("#totalCompte").html(data[1]);
+                $('#tableHome').DataTable().destroy();
+                 $("#tableau").html(data[0]);
+                $('#tableHome').DataTable({
+                    "info": false,
+                    "paging": false,
+                    "searching": true,
+                });
+                $('#ajax-loading').hide();
+            },
+            error: function () {
+                $('#ajax-loading').hide();
+                $("#tableau").html('<tr><td class="erreurData" colspan="8"><b>Une erreur est survenue lors du chargement des données</b></td></tr>');
+            }
+        });
+    }, 20000);
+            }
+         });
         
         $("#buttonTableauDeBordPlier").click(function(){
   $("#TableauDeBord").slideUp();
@@ -64,7 +128,8 @@ $("#buttonTableauDeBordDeplier").click(function(){
         $( "#Tous" ).click(function() {
         $('#ajax-loading').show();
         clearInterval(inter);
-        setInterval(function () {
+        inter = setInterval(function () {
+            monfiltre = "tous";
        $('#ajax-loading').show();
         $.ajax({
             url: "ajax/t_home.php",
@@ -95,6 +160,7 @@ $("#buttonTableauDeBordDeplier").click(function(){
         $(".nav li a").removeClass("active");
         $('#lien_home').addClass('active');
         $('#ajax-loading').show();
+        monfiltre = "perso";
         $.ajax({
             url: "ajax/t_home.php",
             dataType: "json",
@@ -116,7 +182,8 @@ $("#buttonTableauDeBordDeplier").click(function(){
         });
     });
 
-    var inter = setInterval(function () {
+    inter = setInterval(function () {
+    monfiltre = "";
     $('#ajax-loading').show();
         $.ajax({
             url: "ajax/t_home.php",
