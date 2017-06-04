@@ -1,6 +1,8 @@
 <div style="width:100px; margin:0 auto; text-align:center">
-    <div style="float:left; cursor:pointer; color:blue;" id="buttonTableauDeBordPlier">Plier</div>
-    <div style="float:left; cursor:pointer; color:blue;" id="buttonTableauDeBordDeplier">Déplier</div>
+    <button type="button" class="btn btn-success" id="buttonTableauDeBordDeplier">Afficher</button>
+    <button type="button" class="btn btn-danger" id="buttonTableauDeBordPlier">Cacher</button>
+<!--    <div style="float:left; cursor:pointer; color:blue;" id="buttonTableauDeBordPlier">Plier</div>
+    <div style="float:left; cursor:pointer; color:blue;" id="buttonTableauDeBordDeplier">Déplier</div>-->
 </div>
 <!--CHART--> 
 <div style="clear:both"></div>
@@ -21,7 +23,10 @@
 
 </section>
 <div style="float:left"><h3><b>Mon compte</b></h3></div>
-<div style="float:left; margin-top:5px;margin-left:10px; cursor:pointer; color:blue;" id="Tous">Voir tous</div>
+<div style="float:left; margin-top:5px;margin-left:10px; cursor:pointer;" >
+    <button type="button" class="btn btn-success" id="Tous">Voir toutes les monnaies</button>
+</div>
+<!--<div style="float:left; margin-top:5px;margin-left:10px; cursor:pointer; color:blue;" id="Tous">Voir tous</div>-->
 <div style="clear:both" id="totalCompte"></div>
 <div class="table-responsive">
     <table id="tableHome" class="table table-striped table-bordered">
